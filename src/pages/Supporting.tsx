@@ -1,0 +1,27 @@
+import { Link, useParams } from 'react-router-dom';
+import { events, publishedEvents } from '../data/events';
+import { schedule } from '../data/schedule';
+import { orderedSchedule } from '../lib/policies';
+import { ArtImage, Arrow, EventCard, Registration, Spark } from '../components/Shared';
+
+export function EventsPage() {
+  return <div className="support-page"><div className="page-intro"><span className="eyebrow">THE STAGE IS YOURS</span><h1>Find your<br /><em>kind of energy.</em></h1><div className="page-intro-bottom"><p>Dance. Music. Fashion. Different ways to express yourself.<br />The same feeling of being part of something.</p><span className="pill">FREE PARTICIPATION</span></div></div><div className="events-grid">{publishedEvents().map((event,index) => <EventCard key={event.id} event={event} index={index} />)}</div><aside className="info-note"><Spark /><p>For students, by students. Participation is free.<br /><span>Registration links and full event details will appear here once announced.</span></p><Link to="/schedule" className="text-link">View schedule <Arrow diagonal /></Link></aside></div>;
+}
+export function EventDetail() {
+  const { slug } = useParams();
+  const event = events.find(item => item.slug === slug && item.published);
+  if (!event) return <NotFound />;
+  return <div className="support-page detail-page"><Link className="back-link" to="/events">← All events</Link><div className="detail-top"><div><span className="eyebrow">{event.category.toUpperCase()} · PRAVAHA 2K26</span><h1>{event.title}<em>{event.kicker}</em></h1><p className="detail-description">{event.description}</p><div className="detail-register"><span className="pill">PARTICIPATION IS FREE</span><Registration event={event} /></div></div><div className="detail-art">{event.image ? <ArtImage asset={event.image} priority /> : <Spark />}</div></div><div className="detail-information"><section><span className="eyebrow">BEFORE YOU TAKE THE STAGE</span><h2>The details.</h2><dl><div><dt>Who can participate</dt><dd>{event.eligibility}</dd></div><div><dt>Team size</dt><dd>{event.teamSize.min !== null && event.teamSize.max !== null ? `${event.teamSize.min}–${event.teamSize.max} participants` : 'To be announced'}</dd></div><div><dt>When</dt><dd>{event.startsAt ? new Intl.DateTimeFormat('en-IN', { dateStyle: 'long', timeStyle: 'short', timeZone: 'Asia/Kolkata' }).format(new Date(event.startsAt)) : 'To be announced'}</dd></div><div><dt>Where</dt><dd>{event.venue ?? 'To be announced'}</dd></div><div><dt>Coordinator</dt><dd>{event.contact ? <>{event.contact.name}{event.contact.email && <a href={`mailto:${event.contact.email}`}>{event.contact.email}</a>}{event.contact.phone && <a href={`tel:${event.contact.phone}`}>{event.contact.phone}</a>}</> : 'To be announced'}</dd></div></dl></section><section className="rules-panel"><span className="eyebrow">A FEW THINGS TO KNOW</span><h2>Rules & guidelines.</h2>{event.rules.length ? <ol>{event.rules.map(rule => <li key={rule}>{rule}</li>)}</ol> : <><p>Full rules and guidelines will be announced here.</p><p>Check back before registering so you have the latest information.</p></>}<div className="rules-registration"><Registration event={event} /><p>Student and team details are collected through an external Google Form. This website does not collect registration submissions.</p></div></section></div></div>;
+}
+export function SchedulePage() {
+  const records = orderedSchedule(schedule).filter(record => events.some(event => event.id === record.eventId && event.published));
+  const groups = new Map<string, typeof records>();
+  for (const record of records) {
+    const date = new Intl.DateTimeFormat('en-IN', { dateStyle: 'full', timeZone: 'Asia/Kolkata' }).format(new Date(record.startsAt));
+    groups.set(date, [...(groups.get(date) ?? []), record]);
+  }
+  return <div className="support-page schedule-page"><div className="page-intro"><span className="eyebrow">MAKE ROOM FOR MEMORIES</span><h1>Good things.<br /><em>In their own time.</em></h1><p>The Pravaha 2k26 schedule.</p></div>{records.length ? <div className="schedule-groups">{[...groups].map(([date, items]) => <section key={date}><h2>{date}</h2>{items.map(record => { const event = events.find(event => event.id === record.eventId)!; return <article key={record.id} className="schedule-row"><time dateTime={record.startsAt}>{new Intl.DateTimeFormat('en-IN', { timeStyle: 'short', timeZone: 'Asia/Kolkata' }).format(new Date(record.startsAt))}</time><Link to={`/events/${event.slug}`}>{event.title}<Arrow /></Link><span>{record.venue ?? event.venue ?? 'Venue to be announced'}</span></article>; })}</section>)}</div> : <div className="empty-state"><Spark /><span className="eyebrow">THE MOMENTS ARE COMING TOGETHER.</span><h2>Schedule to be announced.</h2><p>We’re putting the pieces in place.<br />Confirmed dates, times, and venues will be shared here.</p><Link to="/events" className="button">Explore the events <Arrow diagonal /></Link></div>}<p className="timezone-note">All event times are shown in Indian Standard Time (Asia/Kolkata).</p></div>;
+}
+export function NotFound() {
+  return <div className="support-page not-found"><span className="eyebrow">404 — A LITTLE OFF THE CURRENT</span><h1>Lost in<br /><em>the flow?</em></h1><p>This page isn’t here. There’s still a whole festival to explore.</p><div><Link to="/" className="button">Back home <Arrow /></Link><Link to="/events" className="text-link">Explore events <Arrow diagonal /></Link></div></div>;
+}
