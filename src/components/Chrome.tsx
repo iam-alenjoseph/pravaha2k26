@@ -14,6 +14,9 @@ export function Header() {
     window.addEventListener('keydown', close);
     return () => window.removeEventListener('keydown', close);
   }, [menuOpen]);
+
+  if (location.pathname === '/') return null;
+
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
     <header className={`site-header ${menuOpen ? 'menu-open' : ''}`}>

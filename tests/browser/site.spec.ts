@@ -97,9 +97,13 @@ test('reduced motion removes the long stage and persists a manual preference', a
   await expect(page.locator('.hero-logo')).toBeVisible();
 });
 
-test('mobile navigation opens, closes with Escape, and routes without leftover stages', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
+test('landing page hides header; secondary page shows header and mobile navigation', async ({ page }) => {
   await page.goto('/');
+  await expect(page.locator('.site-header')).toHaveCount(0);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/events');
+  await expect(page.locator('.site-header')).toBeVisible();
   const menu = page.getByRole('button', { name: 'Open navigation' });
   await menu.click();
   await expect(page.getByRole('navigation', { name: 'Main navigation' })).toBeVisible();
@@ -107,10 +111,11 @@ test('mobile navigation opens, closes with Escape, and routes without leftover s
   await expect(menu).toHaveAttribute('aria-expanded', 'false');
   await expect(menu).toBeFocused();
   await menu.click();
-  await page.locator('#primary-nav').getByRole('link', { name: /Events/ }).click();
-  await expect(page).toHaveURL(/\/events$/);
+  await page.locator('#primary-nav').getByRole('link', { name: /Schedule/ }).click();
+  await expect(page).toHaveURL(/\/schedule$/);
   await expect(page.locator('.story-shell')).toHaveCount(0);
   await page.getByRole('link', { name: 'Pravaha home' }).click();
+  await expect(page.locator('.site-header')).toHaveCount(0);
   await expect(page.locator('.story-shell')).toHaveCount(1);
   await expect(page.locator('.hero-logo')).toBeVisible();
 });
