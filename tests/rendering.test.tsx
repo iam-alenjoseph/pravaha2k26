@@ -3,6 +3,8 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { Registration } from '../src/components/Shared';
 import { Sponsors } from '../src/components/Sponsors';
 import { defineEvents, events } from '../src/data/events';
+import { guest, artists, resolveLineup } from '../src/data/lineup';
+import { LineupPresentation } from '../src/components/Lineup';
 
 describe('editable event contract', () => {
   it('preserves individual art, form, timing, rules and publication overrides', () => {
@@ -32,5 +34,29 @@ describe('conditional sponsors', () => {
     expect(html.indexOf('First example')).toBeLessThan(html.indexOf('Second example'));
     expect(html).toContain('href="https://example.com/"');
     expect(html).not.toContain('Sample logo slot');
+  });
+});
+
+describe('homepage lineup selection', () => {
+  it('accepts configured portrait dimensions, fit, and focal position', () => {
+    const html = renderToStaticMarkup(<LineupPresentation entry={{ ...artists[0], focalPosition: '65% 20%', image: { path: '/fixture-portrait.webp', alt: 'Test portrait', width: 900, height: 1200, fit: 'cover' } }} />);
+    expect(html).toContain('src="/fixture-portrait.webp"');
+    expect(html).toContain('object-fit:cover');
+    expect(html).toContain('object-position:65% 20%');
+  });
+  it('keeps an uncertain guest off production and resolves exactly two artists in order', () => {
+    expect(resolveLineup(guest, artists, false).map(entry => entry.id)).toEqual(['artist-1', 'artist-2']);
+  });
+  it('uses the same guest first for approved production and clearly labelled development previews', () => {
+    const preview = resolveLineup({ ...guest, enabled: false, previewInDevelopment: true }, artists, true);
+    expect(preview.map(entry => entry.role)).toEqual(['guest', 'artist', 'artist']);
+    expect(renderToStaticMarkup(<LineupPresentation entry={preview[0]} />)).toContain('GUEST APPEARANCE UNCONFIRMED');
+    const published = resolveLineup({ ...guest, enabled: true }, artists, false);
+    expect(published[0].id).toBe(guest.id);
+    expect(published[0].previewOnly).toBe(false);
+    expect(renderToStaticMarkup(<LineupPresentation entry={published[0]} />)).not.toContain('DEVELOPMENT PREVIEW');
+  });
+  it('removes the guest without a placeholder record or residual first target', () => {
+    expect(resolveLineup({ ...guest, enabled: false, previewInDevelopment: false }, artists, true)[0].id).toBe('artist-1');
   });
 });

@@ -1,55 +1,67 @@
-# Verification — 30 October 2026
+# Verification — PRD v1.2, 30 October 2026
 
-## Verified result
+This pass continues the existing template. Earlier notes are preserved in `verification-v1.0.md`; the current implementation is governed by the root v1.2 PRD.
 
-- `npm run build`: TypeScript check, Vite production output, and data-derived static route entrypoints pass.
-- `npm test`: **8 tests pass** across registration policy/rendering, per-event configuration overrides, portal camera geometry, schedule filtering/order, and conditional sponsors.
-- Browser suite: **14 tests pass** using Playwright with Chromium **140.0.7339.16** on Windows. The environment's existing Chromium was selected with `node scripts/test-browser.mjs --chromium <absolute-path>`; the matching new Playwright browser download was unavailable during QA.
-- Responsive inspections: 320, 360, 390, 768, 1024, and 1440 CSS-pixel widths; 844px mobile / 900px desktop viewport heights. No horizontal page overflow in the checked opening, programs, artists, and footer states.
-- Additional orientation check: 390 × 844 → 844 × 390 keeps art/aperture transforms aligned.
+## Result and checks
 
-## Functional evidence
+- Production build passes: TypeScript, Vite, and content-derived static route files.
+- **19 Chromium browser checks pass**, covering all prior supported routes and new v1.2 behavior. Viewports: 320, 360, 390, 768, 1024, 1440px; portrait-to-landscape resize also checked.
+- **12 unit/contract checks pass**, covering registration policy and markup, event overrides, eye camera geometry, schedule sorting, sponsors, portrait fit/focal position, and guest resolution.
+- A separate **guest-enabled production build fixture** passes on 1440 × 900 and 390 × 844, verifying guest → Artist 1 → Artist 2 order, matching arrival target, Skip intro focus, direct Artist 1 anchor, and absence of a development-warning label. Normal production is guest-disabled.
+- One independent code/visual review completed; its actionable findings were fixed and re-inspected. Two production visual passes were captured.
 
-| PRD checks | Evidence |
+Browser: Chromium **140.0.7339.16**, Playwright on Windows, selected through the documented custom executable argument. Playwright's FFmpeg v1013 was installed for local recording. No runtime dependency or framework migration was introduced.
+
+## New behavior verified
+
+| PRD check | Evidence |
 |---|---|
-| A1 | Pinned dependency lockfile, successful build, README install/run commands |
-| A2 | Desktop/mobile opening screenshots; identity visible immediately, no loading screen |
-| A3–A5 | Browser tests progress through mascot, sketch and portal, reverse to mascot, and compare shared art/aperture transforms; screenshots capture aligned line art and eye preview |
-| A6 | Skip intro focuses the visible programs section at the correct offset; direct `/#programs`, `/#artists`, event reload, browser Back, and unknown routes tested |
-| A7–A8 | Central manifest, mobile/detail variants, failed-image tests including both failed logo sources; camera calculation tested across sizes/scales; alternate calibration documented in the replacement guide |
-| A9 | Policy and rendered-action tests cover valid Google Forms, missing/unsafe URLs, open/soon/closed states and protected external links |
-| A10 | Empty section hidden in browser; configured ordered sponsors and explicitly labelled sample slots tested through rendered markup; preview is gated by development mode |
-| A11 | System preference and manual persisted toggle tested; reduced mode has no long story wrapper and retains normal content |
-| A12 | Six-width browser checks, mobile menu/Escape/focus test, portrait-to-landscape test, desktop/mobile screenshots |
-| A13 | Empty schedule, artist announcement, null dates/venues/forms/contacts, empty production sponsors; no fabricated bookings or partnerships |
-| A14 | Build results, browser profile and screenshots recorded; repeatable performance data in `performance.json`; remaining limits below |
+| A2–A4 | Immediate logo, wave, full mascot, directional line-art wipe and independent gold mask in desktop/phone checkpoints |
+| A5 / A16 | Configured eye stays centred; camera and aperture share a transform; threshold enters three moving depth groups; page text is hidden until arrival |
+| A6 / A20 | `/#lineup`, `/#artists`, Skip intro, Events navigation, event reload/Back and 404 pass; legacy `/#programs` redirects to `/events`; homepage has no competition cards or registration controls |
+| A7–A9 | Central wave/passage/portrait/backdrop manifests and event forms; failed-image checks; content/registration contract tests retained |
+| A10 | Empty sponsors hidden; configured ordering and labelled development preview covered by existing rendered-markup tests; sponsors remain last before footer |
+| A11–A12 | Reduced mode has ordinary content and no long stage; preference persistence, keyboard/menu/Escape, six widths and orientation refresh pass |
+| A13 | Guest default off in production; both artists unannounced; dates, venue, forms and sponsors remain unknown/empty rather than invented |
+| A15 | Actual crest image moves from first scroll; 3 × 3 alpha sampling verifies full main-wave coverage at phone, landscape and desktop swap points |
+| A17 | Three depth transforms differ, stay unchanged while paused, and return to the same values after a quick forward/reverse jump |
+| A18 | Before/after desktop and phone WebM clips, plus wave/full-mascot/sketch/eye/threshold/passage/arrival checkpoints in `recordings/` |
+| A19 | Default guest-disabled build and separate public-guest-enabled fixture both verified; the shared selector supplies the arrival and normal-flow first entry |
+
+The arrival preview has no links or focusable controls. Actual line-up content is held out of focus while the stage is active and receives focus when the intro is skipped. No wheel/touch interception, autoplay audio or automatic camera continuation is used.
 
 ## Review fixes
 
-Independent code review and failing browser checks identified two substantive motion/navigation defects: refresh could reset the story's rendered progress, and scroll padding could leave Skip intro before the handoff. Rendering now uses ScrollTrigger's actual progress, with an explicit fixed 0→1 playhead; programs navigation uses its exact document offset. Browser regression checks pass after the changes.
+- Expanded wave overlap at the swap after the new alpha-grid check found one exposed main-crest corner.
+- Started every passage layer outside viewport bounds and removed internal SVG letterboxing; updated threshold frames show full-stage flow rather than a cropped floating panel.
+- Matched mobile portrait opacity between the arrival copy and normal-flow composition.
+- Preserved configured portrait fit and focal position; empty image paths receive a deliberate fallback.
 
-Review also caught per-event overrides being overwritten, unused responsive asset paths, fragile regex-based route exports, and an unbounded double-image failure retry. These were corrected. Event overrides and bounded image fallback behavior have focused regression coverage.
+## Comparable performance
 
-## Loading and rendering measurements
+The previous reported 4.8 seconds was **LCP**, not full load. Its original record used the same profile below, but current host speed differs. A fresh pre-change baseline was captured and preserved as `performance-before-v1.2.json`; the after result is `performance.json`.
 
-`performance.json` contains the latest raw results from a **gzip-enabled local production build**, cold cache, device scale factor 1. Profiles:
+Both use the same gzip-enabled local production server, Chromium version, cold cache, device scale 1, and mobile viewport **390 × 844**, **4× CPU slowdown**, **150ms latency**, **200,000 bytes/s download**, **93,750 bytes/s upload**. Performance runs were kept separate from the browser/recording workload.
 
-- Desktop: 1440 × 900, no network/CPU throttling.
-- Simulated mobile: 390 × 844, touch/mobile emulation, 4× CPU slowdown, 150ms latency, 200,000 bytes/s download and 93,750 bytes/s upload.
+| Metric | Fresh before | After |
+|---|---:|---:|
+| Simulated mobile LCP | 2,716 ms | 2,692 ms |
+| Simulated mobile CLS | 0.00836 | 0.00440 |
+| First-view transfer | 342,079 bytes | 350,133 bytes |
+| Compressed application JS | ~136.4 KB | ~138.2 KB |
+| Mobile sampled scroll p95 interval | 7.1 ms | 13.9 ms |
+| Mobile sampled frames >50ms | 0 / 150 | 0 / 150 |
+| Local desktop LCP | 464 ms | 488 ms |
 
-Initial measured transfer is approximately **342 KB**, below the 1.5 MB placeholder target. The application JavaScript is approximately **136.4 KB gzip**, below the 250 KB target. CLS is below **0.01** in both measured profiles.
+Treat the 24ms LCP difference as **effectively unchanged**, not a meaningful improvement. The **2.5-second LCP target remains unmet by about 0.19 seconds** on this profile. Payload and CLS are within the PRD targets. The reported LCP candidate remains the SVG mascot; the template does not yet isolate visible-logo paint from SVG candidate behavior. Further startup investigation is still appropriate.
 
-**The 2.5-second LCP target is not met on the simulated slow-mobile profile.** Initial diagnostic runs were around 4.8–5.2 seconds, versus about 1.2–1.3 seconds on local desktop. Use the raw JSON for the latest value. The reported LCP candidate is an SVG mascot image, so further investigation should separate actual first-visible logo timing from SVG candidate behavior before optimizing or making a production claim.
+The desktop sample has three frames over 50ms; mobile has none in this synthetic run. The host display is high-refresh and this is not a real mid-range-phone measurement. Retest final raster art on physical devices before making a smoothness or production-performance claim.
 
-The script also samples 150 frames while scrolling through the whole intro. There are occasional long frames on the desktop/browser host; this is not proof of smoothness on a mid-range phone. Final artwork needs its own real-device performance pass.
+## Limits and handoff
 
-## Remaining limits
+- Tathva's HTML was reachable, but its live motion was not inspected; Dhwani could not be accessed by the research tool. No reference clip was supplied. This is an original motion refinement, not a verified recreation of either reference.
+- Mascot, wave, passage, silhouettes and arrival backdrops remain intentional stand-ins. The mascot identity was preserved. [Exact replacement needs](asset-replacement.md) and [before/after clips](recordings/README.md) are included.
+- Real iOS Safari/Android hardware, changing mobile browser chrome, screen-reader behavior and a full WCAG audit remain outside this Chromium pass.
+- No confirmed guest/artist/sponsor booking, event date/venue or form URL was fabricated. No deployment or public launch was performed.
 
-- Final isolated mascot, aligned pencil/mask layers, transparent logo, program art, performers, sponsors, rules, venue/date and form links are not supplied. The template deliberately uses replaceable stand-ins and announcement states.
-- The Dhwani website could not be fetched; no recording or mascot character sheet was present. No claim is made to have reproduced its choreography.
-- Chromium only: real iOS Safari, Android devices, dynamic browser chrome and physical touch behavior remain to be checked.
-- Keyboard and focus behavior received focused checks; this is not a full screen-reader or WCAG conformance audit.
-- No production deployment, domain, analytics or real participant submission was created. Static hosting must use the emitted route entrypoints and/or SPA fallback.
-- Placeholder performance numbers do not certify final artwork or production hosting.
-
-See `screenshots/desktop-opening.png`, `mobile-opening.png`, `desktop-mascot.png`, `desktop-sketch.png`, `desktop-portal.png`, `mobile-portal.png`, and desktop/mobile programs screenshots for visual evidence.
+Run `npm run dev` for the working template. Development deliberately previews the unconfirmed guest; `npm run build` / `npm run preview` show the normal public guest-disabled configuration.

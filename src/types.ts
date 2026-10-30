@@ -36,14 +36,25 @@ export interface EventRecord {
   accent: string;
   art: 'dance' | 'music' | 'fashion';
 }
-export interface ArtistRecord {
+export interface LineupRecord {
   id: string;
+  role: 'guest' | 'artist';
   name: string | null;
   announcementLabel: string;
-  performanceType: string;
+  performanceType: string | null;
+  copy: string | null;
   image?: Asset;
+  backdrop?: Asset;
+  focalPosition?: string;
   state: 'unannounced' | 'announced';
   order: number;
+  treatment: 'teal' | 'gold' | 'guest';
+  previewOnly?: boolean;
+}
+export interface GuestRecord extends LineupRecord {
+  role: 'guest';
+  enabled: boolean;
+  previewInDevelopment: boolean;
 }
 export interface SponsorRecord {
   id: string;

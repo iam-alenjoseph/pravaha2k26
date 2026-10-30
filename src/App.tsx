@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Header, Footer } from './components/Chrome';
 import Home from './pages/Home';
@@ -13,13 +13,15 @@ function initialReduced() {
 }
 function ScrollAndTitle() {
   const location = useLocation();
+  const navigate = useNavigate();
   useLayoutEffect(() => {
+    if (location.pathname === '/' && location.hash === '#programs') { navigate('/events', { replace: true }); return; }
     let first = 0, second = 0;
     first = requestAnimationFrame(() => { second = requestAnimationFrame(() => {
       ScrollTrigger.refresh();
       const target = location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
       if (target) {
-        if (target.id === 'programs') window.scrollTo(0, window.scrollY + target.getBoundingClientRect().top);
+        if (target.id === 'lineup' || target.id === 'artists') window.scrollTo(0, window.scrollY + target.getBoundingClientRect().top);
         else target.scrollIntoView();
         ScrollTrigger.update(); target.focus({ preventScroll: true });
       }
@@ -28,7 +30,7 @@ function ScrollAndTitle() {
     const prefix = location.pathname === '/schedule' ? 'Schedule' : location.pathname.startsWith('/events') ? 'Events' : '';
     document.title = `${prefix ? `${prefix} · ` : ''}Pravaha 2k26 — Find your flow.`;
     return () => { cancelAnimationFrame(first); cancelAnimationFrame(second); };
-  }, [location]);
+  }, [location, navigate]);
   return null;
 }
 function SiteApp() {

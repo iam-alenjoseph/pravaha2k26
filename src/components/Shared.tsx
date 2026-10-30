@@ -17,7 +17,7 @@ export function ArtImage({ asset, fallback, fallbackLabel, className = '', prior
   const key = `${asset.path}:${mobile}`;
   const [failure, setFailure] = useState({ key, count: 0 });
   const count = failure.key === key ? failure.count : 0;
-  const selected = count > 0 ? fallback : asset;
+  const selected = count > 0 || !asset.path.trim() ? fallback : asset;
   if (!selected || count > 1) return <div className={`art-fallback ${className}`} role="img" aria-label={asset.alt} style={{ aspectRatio: `${asset.width}/${asset.height}` }}><Spark /><span>{fallbackLabel ?? `Pravaha ${site.edition}`}</span></div>;
   const source = mobile && selected.responsive?.mobile ? selected.responsive.mobile : selected.path;
   const detail = !mobile ? selected.responsive?.detail : undefined;
@@ -28,13 +28,6 @@ export function Registration({ event }: { event: EventRecord }) {
   return action.href
     ? <a className="registration-link" href={action.href} target="_blank" rel="noopener noreferrer">{action.label}<Arrow diagonal /></a>
     : <span className={`registration-state ${event.registrationState}`}><span className="status-dot" />{action.label}</span>;
-}
-export function ProgramsIntro({ preview = false }: { preview?: boolean }) {
-  return <div className={`programs-intro ${preview ? 'is-preview' : ''}`}>
-    <div className="eyebrow"><span className="short-line" />THE STAGE IS YOURS</div>
-    {preview ? <div className="section-title">A little rhythm.<br />A little <em>rebellion.</em></div> : <h2 className="section-title">A little rhythm.<br />A little <em>rebellion.</em></h2>}
-    <div className="intro-base"><p>Find what moves you.<br />Then give it everything you’ve got.</p><span className="intro-spark"><Spark /></span><p className="small-label">DANCE. MUSIC. EXPRESSION.<br /><span>ONE SHARED CURRENT.</span></p></div>
-  </div>;
 }
 export function EventCard({ event, index }: { event: EventRecord; index: number }) {
   return <article className={`event-card ${event.art}`} style={{ '--event-accent': event.accent } as CSSProperties}>

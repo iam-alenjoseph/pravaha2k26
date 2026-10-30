@@ -19,11 +19,11 @@ export function Header() {
 
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
-    <header className={`site-header ${menuOpen ? 'menu-open' : ''}`}>
+    <header className={`site-header ${location.pathname === '/' ? 'on-home' : ''} ${menuOpen ? 'menu-open' : ''}`}>
       <Link to="/" className="brand" aria-label="Pravaha home"><span className="brand-icon">P<span>·</span></span><span className="brand-name">PRAVAHA<span>2K26</span></span></Link>
       <div className="header-note">A CELEBRATION.<br /><span>A CURRENT. A COLLECTIVE.</span></div>
       <button id="menu-toggle" className="menu-toggle" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-controls="primary-nav" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><span /><span /></button>
-      <nav id="primary-nav" aria-label="Main navigation"><NavLink to="/events">Events <span>↗</span></NavLink><NavLink to="/schedule">Schedule <span>↗</span></NavLink><Link className="nav-cta" to="/#programs">Find your stage <Arrow diagonal /></Link></nav>
+      <nav id="primary-nav" aria-label="Main navigation"><Link className="nav-cta" to="/#lineup">Line-up <Arrow diagonal /></Link><NavLink to="/events">Events <span>↗</span></NavLink><NavLink to="/schedule">Schedule <span>↗</span></NavLink></nav>
     </header>
   </>;
 }

@@ -1,5 +1,5 @@
 {
-  "measuredAt": "2026-10-30T08:45:09.674Z",
+  "measuredAt": "2026-10-30T10:28:06.723Z",
   "hosting": "Local static build served with gzip; cold cache per profile",
   "results": [
     {
@@ -12,15 +12,15 @@
         "cpu": 1
       },
       "browser": "140.0.7339.16",
-      "lcp": 1172,
-      "cls": 0.007528292248049554,
+      "lcp": 488,
+      "cls": 0.0025794270833333333,
       "lcpElement": {},
       "lcpUrl": "http://127.0.0.1:4180/assets/placeholders/mascot-colour.svg",
-      "firstViewTransferBytes": 342079,
+      "firstViewTransferBytes": 350133,
       "scrollFrames": {
         "frames": 150,
-        "medianMs": 16.5,
-        "p95Ms": 34.69999999999982,
+        "medianMs": 7,
+        "p95Ms": 27.899999999999864,
         "over50ms": 3
       },
       "errors": [],
@@ -42,15 +42,15 @@
         }
       },
       "browser": "140.0.7339.16",
-      "lcp": 4772,
-      "cls": 0.006233564818014431,
+      "lcp": 2692,
+      "cls": 0.00439959173778695,
       "lcpElement": {},
       "lcpUrl": "http://127.0.0.1:4180/assets/placeholders/mascot-colour.svg",
-      "firstViewTransferBytes": 342079,
+      "firstViewTransferBytes": 350133,
       "scrollFrames": {
         "frames": 150,
-        "medianMs": 8.399999999999636,
-        "p95Ms": 24.899999999999636,
+        "medianMs": 7,
+        "p95Ms": 13.900000000000091,
         "over50ms": 0
       },
       "errors": [],

@@ -14,22 +14,22 @@ test('opening, aligned sketch, eye portal, reverse, and anchor handoff', async (
   await progress(.38);
   await expect(page.locator('.story-shell')).toHaveAttribute('data-scene', 'mascot');
   await page.screenshot({ path: 'docs/screenshots/desktop-mascot.png' });
-  await progress(.66);
+  await progress(.60);
   await expect(page.locator('.story-shell')).toHaveAttribute('data-scene', 'sketch');
-  const sketchOpacity = await page.locator('image[href$="mascot-sketch.svg"]').getAttribute('opacity');
-  expect(Number(sketchOpacity)).toBeGreaterThan(.9);
+  const sketchWidth = await page.locator('#sketch-wipe rect').getAttribute('width');
+  expect(Number(sketchWidth)).toBeGreaterThan(720);
   await page.screenshot({ path: 'docs/screenshots/desktop-sketch.png' });
   await progress(.80);
-  await expect(page.locator('.story-shell')).toHaveAttribute('data-scene', 'portal');
+  await expect(page.locator('.story-shell')).toHaveAttribute('data-scene', 'passage');
   const transforms = await page.evaluate(() => ({ art: document.querySelector('image[href$="mascot-colour.svg"]')?.parentElement?.getAttribute('transform'), eye: document.querySelector('#eye-portal>path')?.getAttribute('transform') }));
   expect(transforms.art).toBe(transforms.eye);
   await page.screenshot({ path: 'docs/screenshots/desktop-portal.png' });
   await progress(.38);
   await expect(page.locator('.story-shell')).toHaveAttribute('data-scene', 'mascot');
   await page.getByRole('button', { name: 'Skip intro' }).click();
-  await expect(page.locator('#programs')).toBeFocused();
-  await expect(page.locator('#programs')).not.toHaveClass(/waiting-for-portal/);
-  expect(await page.locator('#programs').evaluate(el => Math.abs(el.getBoundingClientRect().top))).toBeLessThan(3);
+  await expect(page.locator('#lineup')).toBeFocused();
+  await expect(page.locator('#lineup')).not.toHaveClass(/waiting-for-portal/);
+  expect(await page.locator('#lineup').evaluate(el => Math.abs(el.getBoundingClientRect().top))).toBeLessThan(3);
   expect(errors).toEqual([]);
 });
 
@@ -41,14 +41,14 @@ for (const width of [320, 360, 390, 768, 1024, 1440]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     if (width === 390 || width === 1440) await page.screenshot({ path: `docs/screenshots/${width === 390 ? 'mobile' : 'desktop'}-opening.png` });
     await page.getByRole('button', { name: 'Skip intro' }).click();
-    await expect(page.locator('#programs')).toBeFocused();
-    await expect(page.locator('.event-card')).toHaveCount(3);
+    await expect(page.locator('#lineup')).toBeFocused();
+    await expect(page.locator('[data-lineup-role="artist"]')).toHaveCount(2);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await page.locator('.events-grid').scrollIntoViewIfNeeded();
-    if (width === 390 || width === 1440) await page.screenshot({ path: `docs/screenshots/${width === 390 ? 'mobile' : 'desktop'}-programs.png` });
+    await page.locator('#artists').scrollIntoViewIfNeeded();
+    if (width === 390 || width === 1440) await page.screenshot({ path: `docs/screenshots/${width === 390 ? 'mobile' : 'desktop'}-lineup.png` });
     await page.locator('#artists').scrollIntoViewIfNeeded();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await expect(page.getByRole('heading', { name: 'Line-up to be announced' })).toBeVisible();
+    await expect(page.locator('.lineup-section .lineup-announcement').first()).toBeVisible();
     await expect(page.locator('#sponsors')).toHaveCount(0);
     await page.locator('footer').scrollIntoViewIfNeeded();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -69,8 +69,10 @@ test('direct routes, registration states, browser Back, anchors, and 404', async
   await page.goto('/schedule');
   await expect(page.getByRole('heading', { name: 'Schedule to be announced.' })).toBeVisible();
   await page.goto('/#programs');
-  await expect(page.locator('#programs')).toBeFocused();
-  await expect(page.locator('#programs')).not.toHaveClass(/waiting-for-portal/);
+  await expect(page).toHaveURL(/\/events$/);
+  await page.goto('/#lineup');
+  await expect(page.locator('#lineup')).toBeFocused();
+  await expect(page.locator('#lineup')).not.toHaveClass(/waiting-for-portal/);
   await page.goto('/#artists');
   await expect(page.locator('#artists')).toBeVisible();
   await page.goto('/does-not-exist');
@@ -83,7 +85,7 @@ test('reduced motion removes the long stage and persists a manual preference', a
   await expect(page.locator('.story-shell')).not.toHaveClass(/has-motion/);
   const height = await page.locator('.story-shell').evaluate(el => el.clientHeight);
   expect(height).toBeLessThanOrEqual(900);
-  await expect(page.locator('#programs')).not.toHaveClass(/waiting-for-portal/);
+  await expect(page.locator('#lineup')).not.toHaveClass(/waiting-for-portal/);
   const toggle = page.getByRole('button', { name: /Reduce motion/ });
   await toggle.scrollIntoViewIfNeeded();
   await expect(toggle).toHaveAttribute('aria-pressed', 'true');
@@ -153,12 +155,12 @@ test('a broken primary logo and broken fallback stop retrying and keep an identi
 test('mobile story, refresh at the portal, and handoff stay continuous', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
-  for (const [progress, scene] of [[.38, 'mascot'], [.66, 'sketch'], [.8, 'portal'], [.95, 'handoff']] as const) {
+  for (const [progress, scene] of [[.38, 'mascot'], [.60, 'sketch'], [.70, 'eye'], [.85, 'passage'], [.98, 'arrival'], [1, 'handoff']] as const) {
     await page.evaluate(value => { const shell = document.querySelector('.story-shell')!; window.scrollTo(0, (shell.clientHeight - document.querySelector('.story-stage')!.clientHeight) * value); }, progress);
     await expect(page.locator('.story-shell')).toHaveAttribute('data-scene', scene);
-    if (progress === .8) await page.screenshot({ path: 'docs/screenshots/mobile-portal.png' });
+    if (progress === .85) await page.screenshot({ path: 'docs/screenshots/mobile-portal.png' });
   }
   await page.getByRole('button', { name: 'Skip intro' }).click();
-  await expect(page.locator('#programs')).toBeFocused();
-  await expect(page.locator('.programs-intro').last()).toBeVisible();
+  await expect(page.locator('#lineup')).toBeFocused();
+  await expect(page.locator('.lineup-section .lineup-composition').first()).toBeVisible();
 });

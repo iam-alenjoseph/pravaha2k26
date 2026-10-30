@@ -8,6 +8,9 @@ const placeholderMascot: MascotAssets = {
   mask: placeholder('mascot-mask', 'Separate golden mask'),
 };
 const flow: Asset = { path: '/assets/placeholders/flow.svg', alt: '', width: 1600, height: 1000 };
+const sceneAsset = (name: string, width = 1600, height = 1000): Asset => ({ path: `/assets/placeholders/${name}.svg`, alt: '', width, height, fit: 'cover' });
+const wave = { rear: sceneAsset('wave-rear', 1800, 1200), crest: sceneAsset('wave-crest', 1800, 1200), edge: sceneAsset('wave-edge', 1800, 1200) };
+const passage = { far: sceneAsset('passage-far'), middle: sceneAsset('passage-middle'), near: sceneAsset('passage-near') };
 
 export const site = {
   name: 'Pravaha',
@@ -26,6 +29,11 @@ export const site = {
     flowFallback: flow,
     mascot: { ...placeholderMascot } as MascotAssets,
     mascotFallback: placeholderMascot,
+    wave,
+    waveFallback: wave,
+    passage,
+    passageFallback: passage,
+    lineupBackdrops: { teal: sceneAsset('arrival-teal'), gold: sceneAsset('arrival-gold'), guest: sceneAsset('arrival-guest') },
   },
   preview: { sponsors: false },
 };

@@ -23,12 +23,12 @@ npm run preview
 
 ## What is built
 
-- Logo → current → mascot → aligned pencil art → coloured-mask eye portal → programs.
+- Logo → sliding illustrated wave → mascot → directional pencil reveal → accelerated masked-eye approach → layered flow passage → line-up arrival.
 - Reversible GSAP progression in a single native-scroll sticky stage, responsive geometry and refresh cleanup.
 - Dance, Music, and Fashion Show listing/detail templates; configurable free Google Forms registration.
-- Honest artist and schedule announcement states; conditional sponsors after the final homepage composition.
+- Optional guest (production off), then two separate artist compositions, then conditional sponsors. Honest artist and schedule announcement states.
 - Keyboard skip navigation, Skip intro, direct anchors, mobile menu, 404, system reduced motion, and a persistent Reduce motion toggle in the footer.
-- Original SVG stand-ins and deliberate failed-image fallbacks.
+- Original replaceable SVG wave/passage layers, preserved mascot stand-in, and deliberate failed-image fallbacks. Competition cards and registration live on supporting pages only.
 
 The only supplied artwork was the root JPEG logo. The mascot and program art are original **temporary SVG stand-ins**, not the organiser’s final character. The pencil asset is genuine aligned line art with hatching, not a grayscale filter. See [asset replacement](docs/asset-replacement.md).
 
@@ -37,15 +37,17 @@ The only supplied artwork was the root JPEG logo. The mascot and program art are
 | File | Edit here |
 |---|---|
 | `src/config/site.ts` | Logo/asset manifest, nullable date/college/venue/contact/social links, theme, sponsor preview |
-| `src/config/motion.ts` | Stage timings, mobile/desktop travel and composition, eye centre/path, sketch background |
+| `src/config/motion.ts` | Stage timings, wave direction/travel/overscan, mobile/desktop composition, eye geometry, passage depth rates, arrival pacing |
 | `src/data/events.ts` | Categories, art, rules, team limits, eligibility, venue/time/contact, registration and publication |
-| `src/data/artists.ts` | One or multiple performers, image slots and announcement states |
+| `src/data/lineup.ts` | Optional guest, exactly two ordered artists, portrait/backdrop slots, focal positions and announcement states |
 | `src/data/sponsors.ts` | Real confirmed sponsors, optional logos/websites/tiers/order |
 | `src/data/schedule.ts` | Published schedule records referencing event IDs |
 
 Each event’s record accepts overrides for all event fields. Defaults fill only missing fields. Registration states are `soon`, `open`, `closed`. To open an event, add `registrationState: 'open'` and `registrationUrl: 'https://forms.gle/…'` to that event record. HTTPS `forms.gle` and `docs.google.com/forms/…` URLs are supported. Unknown, invalid, missing, or closed forms produce a non-clickable state. Website code never receives submissions.
 
-Artists: set `state: 'announced'`, a real name, and optionally an `image`. Unannounced artists retain branded abstract art. Sponsors are empty by default. Add a real record and the section appears automatically; `site.preview.sponsors = true` exposes labelled sample slots **only in development**, never in a production build.
+Artists: set `state: 'announced'`, a confirmed name, and optionally an `image`; `focalPosition` and asset `fit` control framing. Unannounced slots use “Artist announcement coming soon”. The guest has independent `enabled`, `previewInDevelopment`, and announcement state fields. Production defaults to **guest disabled**; `npm run dev` shows a clearly labelled unconfirmed guest preview. Enable the public guest slot only when the organiser approves its presence. The shared selector powers the arrival and actual section, so disabling it goes directly to Artist 1.
+
+Navigation: `/#lineup` skips to the first enabled presentation, `/#artists` reaches Artist 1, and Events opens `/events`. Legacy `/#programs` redirects to `/events`. Sponsors are empty by default. Add a real record and the final section appears automatically; `site.preview.sponsors = true` exposes labelled sample slots **only in development**.
 
 Example schedule dataset, **illustrative only — not official event information**:
 
@@ -80,6 +82,14 @@ node scripts/test-browser.mjs --chromium "ABSOLUTE_PATH_TO_CHROME"
 
 The tests launch the production preview on port 4173, capture selected screenshots in `docs/screenshots/`, and retain failure traces under ignored `test-results/`. [Verification notes](docs/verification.md) distinguish browser checks from real-device and production checks.
 
+The optional guest-enabled production fixture can be checked without changing source or the production `dist/`:
+
+```sh
+node scripts/verify-guest.mjs "ABSOLUTE_PATH_TO_CHROME"
+```
+
+Before/after scroll clips and intermediate frames are in [`docs/recordings/`](docs/recordings/README.md). To capture a new version after building, run `node scripts/record-story.mjs after "ABSOLUTE_PATH_TO_CHROME"`. Playwright video recording needs its FFmpeg binary (`npx playwright install ffmpeg`).
+
 For repeatable local payload/LCP/CLS and scroll-frame diagnostics after a build:
 
 ```sh
@@ -92,4 +102,4 @@ This starts and stops its own gzip-enabled loopback server and writes `docs/perf
 
 Manrope Variable and Cormorant Garamond (500 regular/italic), self-hosted through Fontsource; both use the SIL Open Font License. License copies ship under `public/licenses/`.
 
-Motion implementation follows [GSAP ScrollTrigger documentation](https://gsap.com/docs/v3/Plugins/ScrollTrigger/). The optional [Awwwards-style GSAP skill](https://github.com/menervatripolska/awwwards-gsap-scrolltrigger-skill) informed motion structure and cleanup. It is tooling guidance and adds no runtime dependency. The Dhwani reference could not be accessed from this environment, and no reference recording or mascot sheet was present. The composition and artwork here are original.
+Motion implementation follows [GSAP ScrollTrigger documentation](https://gsap.com/docs/v3/Plugins/ScrollTrigger/). The installed [GSAP skill](https://github.com/menervatripolska/awwwards-gsap-scrolltrigger-skill) and consulted [juliobsz Awwwards guidance](https://github.com/juliobsz/skills/blob/main/awwwards/SKILL.md) informed continuity, composition and feedback. The latter was consulted, not installed. Neither adds runtime dependencies. Tathva's HTML was accessible; its live animation was not independently inspected. Dhwani remained inaccessible. No reference recording or mascot sheet was present; this is an original refinement of the existing mascot and brand.
