@@ -1,0 +1,50 @@
+[
+  {
+    "clip": "docs/recordings/polish/desktop-complete.webm",
+    "duration": 28.04,
+    "filmstrip": "docs/recordings/polish/desktop-filmstrip.png",
+    "samples": 24
+  },
+  {
+    "clip": "docs/recordings/polish/phone-complete.webm",
+    "duration": 25.64,
+    "filmstrip": "docs/recordings/polish/phone-filmstrip.png",
+    "samples": 24
+  },
+  {
+    "clip": "docs/recordings/polish/desktop-scrubbing.webm",
+    "duration": 26.56,
+    "filmstrip": "docs/recordings/polish/scrubbing-filmstrip.png",
+    "samples": 24
+  },
+  {
+    "clip": "docs/recordings/polish/phone-scrubbing.webm",
+    "duration": 24.36,
+    "filmstrip": "docs/recordings/polish/phone-scrubbing-filmstrip.png",
+    "samples": 24
+  },
+  {
+    "clip": "docs/recordings/polish/guest-sponsors-preview.webm",
+    "duration": 61.28,
+    "filmstrip": "docs/recordings/polish/guest-desktop-filmstrip.png",
+    "samples": 24
+  },
+  {
+    "clip": "docs/recordings/polish/guest-sponsors-phone-preview.webm",
+    "duration": 60.44,
+    "filmstrip": "docs/recordings/polish/guest-phone-filmstrip.png",
+    "samples": 24
+  },
+  {
+    "clip": "docs/recordings/polish/desktop-reduced.webm",
+    "duration": 8.68,
+    "filmstrip": "docs/recordings/polish/desktop-reduced-filmstrip.png",
+    "samples": 24
+  },
+  {
+    "clip": "docs/recordings/polish/phone-reduced.webm",
+    "duration": 8.04,
+    "filmstrip": "docs/recordings/polish/phone-reduced-filmstrip.png",
+    "samples": 24
+  }
+]

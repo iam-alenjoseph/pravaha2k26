@@ -1,0 +1,130 @@
+{
+  "case": {
+    "name": "desktop-complete",
+    "width": 1440,
+    "height": 900
+  },
+  "errors": [],
+  "states": [
+    {
+      "key": "00-logo",
+      "seconds": 2.087,
+      "progress": "0.0000",
+      "file": "docs/recordings/polish/desktop-complete/00-logo.png"
+    },
+    {
+      "key": "01-wave-entry",
+      "seconds": 3.144,
+      "progress": "0.0650",
+      "file": "docs/recordings/polish/desktop-complete/01-wave-entry.png"
+    },
+    {
+      "key": "02-wave-cover",
+      "seconds": 4.148,
+      "progress": "0.1150",
+      "file": "docs/recordings/polish/desktop-complete/02-wave-cover.png"
+    },
+    {
+      "key": "03-wave-uncover",
+      "seconds": 5.363,
+      "progress": "0.1850",
+      "file": "docs/recordings/polish/desktop-complete/03-wave-uncover.png"
+    },
+    {
+      "key": "04-wave-clear",
+      "seconds": 6.334,
+      "progress": "0.2300",
+      "file": "docs/recordings/polish/desktop-complete/04-wave-clear.png"
+    },
+    {
+      "key": "05-mascot",
+      "seconds": 7.956,
+      "progress": "0.3101",
+      "file": "docs/recordings/polish/desktop-complete/05-mascot.png"
+    },
+    {
+      "key": "06-sketch",
+      "seconds": 9.215,
+      "progress": "0.5000",
+      "file": "docs/recordings/polish/desktop-complete/06-sketch.png"
+    },
+    {
+      "key": "07-eye-start",
+      "seconds": 10.439,
+      "progress": "0.5800",
+      "file": "docs/recordings/polish/desktop-complete/07-eye-start.png"
+    },
+    {
+      "key": "08-eye-quarter",
+      "seconds": 11.711,
+      "progress": "0.6399",
+      "file": "docs/recordings/polish/desktop-complete/08-eye-quarter.png"
+    },
+    {
+      "key": "09-eye-half",
+      "seconds": 13.214,
+      "progress": "0.7000",
+      "file": "docs/recordings/polish/desktop-complete/09-eye-half.png"
+    },
+    {
+      "key": "10-eye-rim",
+      "seconds": 14.631,
+      "progress": "0.7601",
+      "file": "docs/recordings/polish/desktop-complete/10-eye-rim.png"
+    },
+    {
+      "key": "11-threshold",
+      "seconds": 16.016,
+      "progress": "0.8200",
+      "file": "docs/recordings/polish/desktop-complete/11-threshold.png"
+    },
+    {
+      "key": "12-passage",
+      "seconds": 17.221,
+      "progress": "0.8601",
+      "file": "docs/recordings/polish/desktop-complete/12-passage.png"
+    },
+    {
+      "key": "13-exit-light",
+      "seconds": 18.52,
+      "progress": "0.9000",
+      "file": "docs/recordings/polish/desktop-complete/13-exit-light.png"
+    },
+    {
+      "key": "14-backdrop",
+      "seconds": 19.691,
+      "progress": "0.9399",
+      "file": "docs/recordings/polish/desktop-complete/14-backdrop.png"
+    },
+    {
+      "key": "15-portrait-settled",
+      "seconds": 20.856,
+      "progress": "0.9710",
+      "file": "docs/recordings/polish/desktop-complete/15-portrait-settled.png"
+    },
+    {
+      "key": "16-arrival",
+      "seconds": 22.038,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/desktop-complete/16-arrival.png"
+    },
+    {
+      "key": "lineup-1",
+      "seconds": 24.089,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/desktop-complete/lineup-1.png"
+    },
+    {
+      "key": "lineup-2",
+      "seconds": 26.05,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/desktop-complete/lineup-2.png"
+    },
+    {
+      "key": "footer",
+      "seconds": 27.687,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/desktop-complete/footer.png"
+    }
+  ]
+}

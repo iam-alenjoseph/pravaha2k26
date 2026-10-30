@@ -1,0 +1,143 @@
+{
+  "case": {
+    "name": "guest-sponsors-phone-preview",
+    "width": 390,
+    "height": 844,
+    "development": true
+  },
+  "errors": [],
+  "states": [
+    {
+      "key": "00-logo",
+      "seconds": 10.162,
+      "progress": "0.0000",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/00-logo.png"
+    },
+    {
+      "key": "01-wave-entry",
+      "seconds": 12.409,
+      "progress": "0.0649",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/01-wave-entry.png"
+    },
+    {
+      "key": "02-wave-cover",
+      "seconds": 14.804,
+      "progress": "0.1149",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/02-wave-cover.png"
+    },
+    {
+      "key": "03-wave-uncover",
+      "seconds": 16.879,
+      "progress": "0.1850",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/03-wave-uncover.png"
+    },
+    {
+      "key": "04-wave-clear",
+      "seconds": 18.539,
+      "progress": "0.2300",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/04-wave-clear.png"
+    },
+    {
+      "key": "05-mascot",
+      "seconds": 20.934,
+      "progress": "0.3099",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/05-mascot.png"
+    },
+    {
+      "key": "06-sketch",
+      "seconds": 23.461,
+      "progress": "0.5000",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/06-sketch.png"
+    },
+    {
+      "key": "07-eye-start",
+      "seconds": 26.848,
+      "progress": "0.5801",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/07-eye-start.png"
+    },
+    {
+      "key": "08-eye-quarter",
+      "seconds": 29.327,
+      "progress": "0.6399",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/08-eye-quarter.png"
+    },
+    {
+      "key": "09-eye-half",
+      "seconds": 31.996,
+      "progress": "0.6999",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/09-eye-half.png"
+    },
+    {
+      "key": "10-eye-rim",
+      "seconds": 34.716,
+      "progress": "0.7599",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/10-eye-rim.png"
+    },
+    {
+      "key": "11-threshold",
+      "seconds": 37.154,
+      "progress": "0.8199",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/11-threshold.png"
+    },
+    {
+      "key": "12-passage",
+      "seconds": 39.157,
+      "progress": "0.8601",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/12-passage.png"
+    },
+    {
+      "key": "13-exit-light",
+      "seconds": 41.474,
+      "progress": "0.9001",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/13-exit-light.png"
+    },
+    {
+      "key": "14-backdrop",
+      "seconds": 43.415,
+      "progress": "0.9400",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/14-backdrop.png"
+    },
+    {
+      "key": "15-portrait-settled",
+      "seconds": 45.745,
+      "progress": "0.9709",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/15-portrait-settled.png"
+    },
+    {
+      "key": "16-arrival",
+      "seconds": 47.792,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/16-arrival.png"
+    },
+    {
+      "key": "lineup-1",
+      "seconds": 50.74,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/lineup-1.png"
+    },
+    {
+      "key": "lineup-2",
+      "seconds": 53.69,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/lineup-2.png"
+    },
+    {
+      "key": "lineup-3",
+      "seconds": 56.378,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/lineup-3.png"
+    },
+    {
+      "key": "sponsors-labelled-preview",
+      "seconds": 58.725,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/sponsors-labelled-preview.png"
+    },
+    {
+      "key": "footer",
+      "seconds": 60.874,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/guest-sponsors-phone-preview/footer.png"
+    }
+  ]
+}

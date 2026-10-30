@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { site } from '../config/site';
 import { safeExternal } from '../lib/policies';
-import { Spark, Arrow } from './Shared';
+import { Arrow } from './Shared';
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -29,7 +29,7 @@ export function Header() {
 }
 export function Footer({ reduced, onToggle }: { reduced: boolean; onToggle: () => void }) {
   return <footer className="site-footer">
-    <div className="footer-top"><Link className="footer-wordmark" to="/">pravaha<span>{site.edition}</span></Link><p>Made of us.<br /><em>Remembered by all.</em></p><Spark /></div>
+    <div className="footer-top"><Link className="footer-wordmark" to="/">pravaha<span>{site.edition}</span></Link></div>
     <div className="footer-bottom"><p>PRAVAHA {site.edition.toUpperCase()}<span>STUDENT-FUNDED · COLLEGE-ONLY</span></p><nav aria-label="Footer"><Link to="/events">Events</Link><Link to="/schedule">Schedule</Link>{site.email && <a href={`mailto:${site.email}`}>Get in touch</a>}{site.socials.filter(s => safeExternal(s.url)).map(s => <a href={safeExternal(s.url)} key={s.label} target="_blank" rel="noopener noreferrer">{s.label}<Arrow diagonal /></a>)}</nav><button className="motion-toggle" aria-pressed={reduced} onClick={onToggle}><span className={`toggle-track ${reduced ? 'on' : ''}`} />Reduce motion <span className="sr-only">{reduced ? 'on' : 'off'}</span></button></div>
   </footer>;
 }

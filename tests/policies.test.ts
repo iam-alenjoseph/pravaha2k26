@@ -1,5 +1,30 @@
 import { describe, expect, it } from 'vitest';
 import { registrationAction, orderedSchedule, portalCamera } from '../src/lib/policies';
+import { motion } from '../src/config/motion';
+import { smoothCameraProgress, revealBeforeUncover, apertureCoverage } from '../src/lib/story-motion';
+
+describe('visual pacing requirements', () => {
+  it('finishes the mascot reveal shortly after the trailing wave clears', () => {
+    expect(motion.mascot.fade.end).toBeLessThanOrEqual(motion.stops.waveEnd + .01);
+  });
+  it('gives the final approach at least 1.1 desktop viewports of scroll', () => {
+    expect((motion.stops.threshold - motion.stops.sketch) * motion.scrollVh.desktop).toBeGreaterThanOrEqual(110);
+  });
+  it('unmasks a substantial figure and leaves little fade after the wave', () => {
+    const opacity = (p: number) => revealBeforeUncover((p - motion.mascot.fade.start) / (motion.mascot.fade.end - motion.mascot.fade.start));
+    expect(opacity(.185)).toBeGreaterThan(.85);
+    expect(opacity(motion.stops.waveEnd)).toBeGreaterThan(.98);
+  });
+  it('spreads the eye growth through the approach and settles both ends', () => {
+    const points = [0, .25, .5, .75, 1].map(smoothCameraProgress);
+    expect(points[4] - points[3]).toBeLessThan(.2);
+    expect(points[1]).toBeGreaterThan(.08);
+    expect(points[2]).toBeCloseTo(.5);
+    const slope = (t: number) => smoothCameraProgress(t + .001) - smoothCameraProgress(t);
+    expect(slope(.05)).toBeLessThan(slope(.4));
+    expect(slope(.95)).toBeLessThan(slope(.6));
+  });
+});
 
 describe('registration', () => {
   it('never links missing, closed, unsafe, or non-HTTPS forms', () => {
@@ -15,6 +40,10 @@ describe('registration', () => {
   });
 });
 describe('portal geometry', () => {
+  it('measures visible aperture coverage rather than retaining an oversized safety target', () => {
+    const contains = (x: number, y: number) => x * x / 400 + y * y / 64 <= 1;
+    expect(apertureCoverage(1440,900,{x:0,y:0},contains,100)).toBeCloseTo(Math.hypot(720/20,450/8),3);
+  });
   it('keeps the configured anatomical eye at the visual centre at every scale', () => {
     for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 }]) {
       for (const scale of [1, 4, 60]) {

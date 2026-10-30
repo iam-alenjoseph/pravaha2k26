@@ -13,6 +13,11 @@ export interface MascotAssets {
   sketch: Asset;
   mask: Asset;
   faceDetail?: Asset;
+  rig?: {
+    sprite: Asset;
+    sourceColourPath: string;
+    sourceSketchPath: string;
+  };
 }
 export type RegistrationState = 'soon' | 'open' | 'closed';
 export interface EventRecord {

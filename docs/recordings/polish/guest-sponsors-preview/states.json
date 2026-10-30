@@ -1,0 +1,143 @@
+{
+  "case": {
+    "name": "guest-sponsors-preview",
+    "width": 1440,
+    "height": 900,
+    "development": true
+  },
+  "errors": [],
+  "states": [
+    {
+      "key": "00-logo",
+      "seconds": 3.131,
+      "progress": "0.0000",
+      "file": "docs/recordings/polish/guest-sponsors-preview/00-logo.png"
+    },
+    {
+      "key": "01-wave-entry",
+      "seconds": 4.206,
+      "progress": "0.0650",
+      "file": "docs/recordings/polish/guest-sponsors-preview/01-wave-entry.png"
+    },
+    {
+      "key": "02-wave-cover",
+      "seconds": 5.175,
+      "progress": "0.1150",
+      "file": "docs/recordings/polish/guest-sponsors-preview/02-wave-cover.png"
+    },
+    {
+      "key": "03-wave-uncover",
+      "seconds": 6.335,
+      "progress": "0.1850",
+      "file": "docs/recordings/polish/guest-sponsors-preview/03-wave-uncover.png"
+    },
+    {
+      "key": "04-wave-clear",
+      "seconds": 7.28,
+      "progress": "0.2300",
+      "file": "docs/recordings/polish/guest-sponsors-preview/04-wave-clear.png"
+    },
+    {
+      "key": "05-mascot",
+      "seconds": 8.861,
+      "progress": "0.3101",
+      "file": "docs/recordings/polish/guest-sponsors-preview/05-mascot.png"
+    },
+    {
+      "key": "06-sketch",
+      "seconds": 10.115,
+      "progress": "0.5000",
+      "file": "docs/recordings/polish/guest-sponsors-preview/06-sketch.png"
+    },
+    {
+      "key": "07-eye-start",
+      "seconds": 12.108,
+      "progress": "0.5800",
+      "file": "docs/recordings/polish/guest-sponsors-preview/07-eye-start.png"
+    },
+    {
+      "key": "08-eye-quarter",
+      "seconds": 15.244,
+      "progress": "0.6399",
+      "file": "docs/recordings/polish/guest-sponsors-preview/08-eye-quarter.png"
+    },
+    {
+      "key": "09-eye-half",
+      "seconds": 18.887,
+      "progress": "0.7000",
+      "file": "docs/recordings/polish/guest-sponsors-preview/09-eye-half.png"
+    },
+    {
+      "key": "10-eye-rim",
+      "seconds": 23.539,
+      "progress": "0.7601",
+      "file": "docs/recordings/polish/guest-sponsors-preview/10-eye-rim.png"
+    },
+    {
+      "key": "11-threshold",
+      "seconds": 27.399,
+      "progress": "0.8200",
+      "file": "docs/recordings/polish/guest-sponsors-preview/11-threshold.png"
+    },
+    {
+      "key": "12-passage",
+      "seconds": 30.371,
+      "progress": "0.8601",
+      "file": "docs/recordings/polish/guest-sponsors-preview/12-passage.png"
+    },
+    {
+      "key": "13-exit-light",
+      "seconds": 33.402,
+      "progress": "0.9000",
+      "file": "docs/recordings/polish/guest-sponsors-preview/13-exit-light.png"
+    },
+    {
+      "key": "14-backdrop",
+      "seconds": 36.3,
+      "progress": "0.9399",
+      "file": "docs/recordings/polish/guest-sponsors-preview/14-backdrop.png"
+    },
+    {
+      "key": "15-portrait-settled",
+      "seconds": 39.188,
+      "progress": "0.9710",
+      "file": "docs/recordings/polish/guest-sponsors-preview/15-portrait-settled.png"
+    },
+    {
+      "key": "16-arrival",
+      "seconds": 42.272,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/guest-sponsors-preview/16-arrival.png"
+    },
+    {
+      "key": "lineup-1",
+      "seconds": 46.394,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/guest-sponsors-preview/lineup-1.png"
+    },
+    {
+      "key": "lineup-2",
+      "seconds": 50.219,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/guest-sponsors-preview/lineup-2.png"
+    },
+    {
+      "key": "lineup-3",
+      "seconds": 53.941,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/guest-sponsors-preview/lineup-3.png"
+    },
+    {
+      "key": "sponsors-labelled-preview",
+      "seconds": 56.817,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/guest-sponsors-preview/sponsors-labelled-preview.png"
+    },
+    {
+      "key": "footer",
+      "seconds": 59.484,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/guest-sponsors-preview/footer.png"
+    }
+  ]
+}

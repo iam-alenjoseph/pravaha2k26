@@ -1,0 +1,35 @@
+{
+  "case": {
+    "name": "desktop-reduced",
+    "width": 1440,
+    "height": 900,
+    "reduced": true
+  },
+  "errors": [],
+  "states": [
+    {
+      "key": "00-logo",
+      "seconds": 1.571,
+      "progress": null,
+      "file": "docs/recordings/polish/desktop-reduced/00-logo.png"
+    },
+    {
+      "key": "lineup-1",
+      "seconds": 3.586,
+      "progress": null,
+      "file": "docs/recordings/polish/desktop-reduced/lineup-1.png"
+    },
+    {
+      "key": "lineup-2",
+      "seconds": 5.549,
+      "progress": null,
+      "file": "docs/recordings/polish/desktop-reduced/lineup-2.png"
+    },
+    {
+      "key": "footer",
+      "seconds": 7.159,
+      "progress": null,
+      "file": "docs/recordings/polish/desktop-reduced/footer.png"
+    }
+  ]
+}

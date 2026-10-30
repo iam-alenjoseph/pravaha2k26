@@ -1,0 +1,101 @@
+{
+  "case": {
+    "name": "phone-scrubbing",
+    "width": 390,
+    "height": 844,
+    "scrub": true
+  },
+  "errors": [],
+  "states": [
+    {
+      "key": "00-logo",
+      "seconds": 1.622,
+      "progress": "0.0000",
+      "file": "docs/recordings/polish/phone-scrubbing/00-logo.png"
+    },
+    {
+      "key": "wave-pause",
+      "seconds": 3.229,
+      "progress": "0.1850",
+      "file": "docs/recordings/polish/phone-scrubbing/wave-pause.png"
+    },
+    {
+      "key": "sketch-pause",
+      "seconds": 4.826,
+      "progress": "0.5000",
+      "file": "docs/recordings/polish/phone-scrubbing/sketch-pause.png"
+    },
+    {
+      "key": "eye-pause",
+      "seconds": 6.693,
+      "progress": "0.6999",
+      "file": "docs/recordings/polish/phone-scrubbing/eye-pause.png"
+    },
+    {
+      "key": "passage-pause",
+      "seconds": 8.561,
+      "progress": "0.8601",
+      "file": "docs/recordings/polish/phone-scrubbing/passage-pause.png"
+    },
+    {
+      "key": "eye-reverse",
+      "seconds": 10.216,
+      "progress": "0.7200",
+      "file": "docs/recordings/polish/phone-scrubbing/eye-reverse.png"
+    },
+    {
+      "key": "sketch-reverse",
+      "seconds": 11.667,
+      "progress": "0.5000",
+      "file": "docs/recordings/polish/phone-scrubbing/sketch-reverse.png"
+    },
+    {
+      "key": "wave-reverse",
+      "seconds": 13.138,
+      "progress": "0.1850",
+      "file": "docs/recordings/polish/phone-scrubbing/wave-reverse.png"
+    },
+    {
+      "key": "logo-reverse",
+      "seconds": 14.675,
+      "progress": "0.0000",
+      "file": "docs/recordings/polish/phone-scrubbing/logo-reverse.png"
+    },
+    {
+      "key": "fast-forward",
+      "seconds": 15.7,
+      "progress": "0.9001",
+      "file": "docs/recordings/polish/phone-scrubbing/fast-forward.png"
+    },
+    {
+      "key": "fast-reverse",
+      "seconds": 16.677,
+      "progress": "0.6399",
+      "file": "docs/recordings/polish/phone-scrubbing/fast-reverse.png"
+    },
+    {
+      "key": "fast-arrival",
+      "seconds": 17.772,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/phone-scrubbing/fast-arrival.png"
+    },
+    {
+      "key": "lineup-1",
+      "seconds": 19.61,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/phone-scrubbing/lineup-1.png"
+    },
+    {
+      "key": "lineup-2",
+      "seconds": 21.429,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/phone-scrubbing/lineup-2.png"
+    },
+    {
+      "key": "footer",
+      "seconds": 22.919,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/phone-scrubbing/footer.png"
+    }
+  ]
+}

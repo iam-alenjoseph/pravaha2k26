@@ -11,20 +11,20 @@ test('opening, aligned sketch, eye portal, reverse, and anchor handoff', async (
     await page.evaluate(value => { const shell = document.querySelector('.story-shell')!; window.scrollTo(0, shell.getBoundingClientRect().top + scrollY + (shell.clientHeight - document.querySelector('.story-stage')!.clientHeight) * value); }, p);
     await page.waitForTimeout(150);
   };
-  await progress(.38);
+  await progress(.32);
   await expect(page.locator('.story-shell')).toHaveAttribute('data-scene', 'mascot');
   await page.screenshot({ path: 'docs/screenshots/desktop-mascot.png' });
-  await progress(.60);
+  await progress(.55);
   await expect(page.locator('.story-shell')).toHaveAttribute('data-scene', 'sketch');
   const sketchWidth = await page.locator('#sketch-wipe rect').getAttribute('width');
   expect(Number(sketchWidth)).toBeGreaterThan(720);
   await page.screenshot({ path: 'docs/screenshots/desktop-sketch.png' });
-  await progress(.80);
+  await progress(.86);
   await expect(page.locator('.story-shell')).toHaveAttribute('data-scene', 'passage');
-  const transforms = await page.evaluate(() => ({ art: document.querySelector('image[href$="mascot-colour.svg"]')?.parentElement?.getAttribute('transform'), eye: document.querySelector('#eye-portal>path')?.getAttribute('transform') }));
+  const transforms = await page.evaluate(() => ({ art: document.querySelector('[data-mascot-camera]')?.getAttribute('transform'), eye: document.querySelector('#eye-portal>path')?.getAttribute('transform') }));
   expect(transforms.art).toBe(transforms.eye);
   await page.screenshot({ path: 'docs/screenshots/desktop-portal.png' });
-  await progress(.38);
+  await progress(.32);
   await expect(page.locator('.story-shell')).toHaveAttribute('data-scene', 'mascot');
   await page.getByRole('button', { name: 'Skip intro' }).click();
   await expect(page.locator('#lineup')).toBeFocused();
@@ -134,11 +134,11 @@ test('image failures retain deliberate branded fallbacks', async ({ page }) => {
 test('portrait to landscape refresh preserves eye alignment', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
-  await page.evaluate(() => window.scrollTo(0, 844 * 4.2 * .78));
+  await page.evaluate(() => { const shell = document.querySelector('.story-shell')!; window.scrollTo(0, (shell.clientHeight - document.querySelector('.story-stage')!.clientHeight) * .72); });
   await page.waitForTimeout(200);
   await page.setViewportSize({ width: 844, height: 390 });
   await page.waitForTimeout(400);
-  const transforms = await page.evaluate(() => ({ art: document.querySelector('image[href$="mascot-colour.svg"]')?.parentElement?.getAttribute('transform'), eye: document.querySelector('#eye-portal>path')?.getAttribute('transform') }));
+  const transforms = await page.evaluate(() => ({ art: document.querySelector('[data-mascot-camera]')?.getAttribute('transform'), eye: document.querySelector('#eye-portal>path')?.getAttribute('transform') }));
   expect(transforms.art).toBe(transforms.eye);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
@@ -155,7 +155,7 @@ test('a broken primary logo and broken fallback stop retrying and keep an identi
 test('mobile story, refresh at the portal, and handoff stay continuous', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
-  for (const [progress, scene] of [[.38, 'mascot'], [.60, 'sketch'], [.70, 'eye'], [.85, 'passage'], [.98, 'arrival'], [1, 'handoff']] as const) {
+  for (const [progress, scene] of [[.32, 'mascot'], [.55, 'sketch'], [.70, 'eye'], [.85, 'passage'], [.98, 'arrival'], [1, 'handoff']] as const) {
     await page.evaluate(value => { const shell = document.querySelector('.story-shell')!; window.scrollTo(0, (shell.clientHeight - document.querySelector('.story-stage')!.clientHeight) * value); }, progress);
     await expect(page.locator('.story-shell')).toHaveAttribute('data-scene', scene);
     if (progress === .85) await page.screenshot({ path: 'docs/screenshots/mobile-portal.png' });

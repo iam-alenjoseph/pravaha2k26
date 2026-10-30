@@ -12,9 +12,17 @@ Each record accepts `image`, optional `backdrop`, `focalPosition`, nullable perf
 
 ### Sliding wave artwork
 
-`site.assets.wave` contains `rear`, `crest`, and `edge` image records, with separate centrally configured fallbacks. The stand-ins are original hand-shaped SVG crests on an **1800 × 1200** canvas. Their dense body extends to the right; the left crest/curl is the transition boundary. The important crest lies roughly in the left **250–1100** design units, with the right body continuously filled across the full height. Keep generous bleed beyond all edges.
+`site.assets.wave` contains `rear`, `crest`, and `edge` image records, with separate centrally configured fallbacks. The stand-ins use a **2400 × 1200** canvas with **two curved boundaries**: the incoming crest at roughly x=250–1100 and the trailing curl at x=1700–2300. Leave a dense middle body and generous top/bottom bleed. The trailing edge stays inside the canvas, so the exit is a wave instead of a clipped rectangle. Rear, crest and gold/foam edge must share the same canvas and curves.
 
-The default right-to-left composition overscans the viewport by **3.2× horizontally / 1.5× vertically**. At the swap, the main image is translated **−1.86 viewport widths**, making its body cover even corner samples on phone and landscape. Rear/edge layers travel at staggered offsets. `motion.wave` controls direction, overscan, leading offsets, and start/cover/end positions. Left-to-right mirrors the full composition. The coverage test samples a 3 × 3 alpha grid; rerun it after changing artwork, direction or travel. Do not replace the silhouette with a rectangle.
+The default right-to-left composition overscans by **5× horizontally / 1.5× vertically**. At the covered swap, the main image is translated **−2.35 viewport widths**; it exits at **−5.05**. Rear/edge layers travel at staggered offsets. `motion.wave` controls direction, overscan, leading offsets, and start/cover/end positions. Left-to-right mirrors the whole composition. Browser checks sample a 3 × 3 alpha grid at cover and verify that the departing edge varies across the frame. Rerun these after replacing artwork. Do not replace either boundary with a rectangle.
+
+### Mascot hand and cloth movement
+
+The existing mascot now has an optional **single SVG sprite** at `site.assets.mascot.rig.sprite`. It contains registered colour/sketch symbols for `body`, `ribbon`, `left-sleeve`, `left-hand`, `right-sleeve`, and `right-hand`, each suffixed `-colour` or `-sketch`. Every symbol uses the same **800 × 1000** master canvas. The head and torso are fixed; shoulders, wrists and cloth rotate independently around normalised pivots in `motion.mascot.joints`.
+
+The sprite activates only when the currently selected colour/sketch paths match `rig.sourceColourPath` and `rig.sourceSketchPath`. Different mobile variants or new full-body art automatically use the normal unrigged image transition. A failed sprite also falls back to the complete static mascot. To animate final art, provide corresponding separated symbols and update these manifest bindings and joint pivots. A flattened PNG cannot flex its hands automatically.
+
+`motion.mascot.fade` blends the figure in behind the departing wave with an early-weighted reveal. At 18.5% story progress it is over 90% visible; it finishes at 23.5%, just after the wave clears at 23%. Idle motion uses GSAP's existing ticker, only during the mascot introduction; it pauses when the tab is hidden and settles to the exact original pose before the sketch/eye zoom. At that point rendering switches to the aligned full-art assets, avoiding magnified articulated SVGs in the deep zoom. It never moves the camera, face, gold mask or eye aperture. Reduced motion omits this animation and its sprite preload. React ref cleanup keeps the joint registry valid through resize and fallback changes.
 
 ### Eye passage and arrival
 
@@ -22,7 +30,11 @@ The default right-to-left composition overscans the viewport by **3.2× horizont
 
 The template motion SVG roots use `preserveAspectRatio="none"` so their abstract flow fills the intended phone/desktop canvas. Unlike the mascot, these decorative curves can stretch; final painted art may use mobile variants or a safe crop instead. Do not letterbox an SVG inside its own canvas. All passage start scales exceed 1 so clipped file boundaries remain offscreen when the layers appear. Preserve transparency for middle/near layers and extend their shapes beyond the edges. The far field has a matched midnight background.
 
-Depth scales/translation rates, mobile complexity factor, camera acceleration, portrait/text arrival stops, and story distances are in `motion.ts`. The passage remains tied to scroll progress; pauses hold it and reverse scroll reconstructs it. Line-up content is invisible until arrival. No new animation engine or time-based ride is required.
+Depth scales/translation rates, mobile complexity factor, portrait/text arrival stops, and story distances are in `motion.ts`. The final eye approach spans 58–82% of 540vh desktop / 460vh phone travel (about 130vh / 110vh). One quintic acceleration/deceleration curve controls linear aperture growth; the camera and aperture retain exactly the same eye-centered transform. Avoid adding a second exponential ease that compresses the visible rim crossing.
+
+Middle and near art must use narrow tapered curved paths, transparent centers and modest fill opacity. Preserve the distant light; broad opaque strokes recreate the sliding-panel problem. Far/middle/near scales grow to 1.16 / 2.5 / 4.6 respectively, with separate translation rates. `passage.arrivalFocus` maps the exit light toward each first-scene treatment; `focusTravel` settles that drift before the portrait. If a final backdrop changes the visual focus, update the matching normalized focus coordinates. The portrait finishes at 96.8%, its scale at 97%, and copy starts at 97.2%.
+
+The passage remains tied to scroll progress; pauses hold it and reverse scroll reconstructs it. Line-up content is invisible until arrival. No new animation engine or time-based ride is required.
 
 ### Exact remaining artwork needs
 
@@ -64,7 +76,7 @@ The template uses **800 × 1000** design units. Colour, pencil sketch, and gold 
 2. Store the files under `public/assets/mascot/`; update `site.assets.mascot.colour`, `.sketch`, and `.mask`.
 3. Set `site.assets.mascot.canvas` and all asset dimensions to the shared master canvas. Retain the fallback manifest separately.
 4. Measure the viewer-left eye’s centre on that canvas. Set normalised `{ x: measuredX / canvasWidth, y: measuredY / canvasHeight }` in `motion.eye.centre`.
-5. Trace the aperture as an SVG path in those **same canvas coordinates**, and set `motion.eye.aperture`. Set conservative `innerRadius` values for an ellipse fully inside the opening; the coverage calculation uses these to fill the viewport safely.
+5. Trace the aperture as a **convex SVG path** in those **same canvas coordinates**, and set `motion.eye.aperture`. On resize the camera measures its actual viewport coverage using the path's fill geometry, with 2% finishing overscan. Set conservative `innerRadius` values for an ellipse fully inside the opening; this remains the safe bound and fallback when geometry queries are unavailable. An unrelated or concave replacement opening needs fresh calibration.
 6. Adjust mobile/desktop composition offsets independently. These place the art within the screen; they do not change the anatomical eye point.
 7. Preview at 390 × 844 and 1440 × 900, including reverse scrolling, breakpoint/orientation changes, and the portal handoff.
 

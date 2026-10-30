@@ -1,0 +1,35 @@
+{
+  "case": {
+    "name": "phone-reduced",
+    "width": 390,
+    "height": 844,
+    "reduced": true
+  },
+  "errors": [],
+  "states": [
+    {
+      "key": "00-logo",
+      "seconds": 1.479,
+      "progress": null,
+      "file": "docs/recordings/polish/phone-reduced/00-logo.png"
+    },
+    {
+      "key": "lineup-1",
+      "seconds": 3.343,
+      "progress": null,
+      "file": "docs/recordings/polish/phone-reduced/lineup-1.png"
+    },
+    {
+      "key": "lineup-2",
+      "seconds": 5.146,
+      "progress": null,
+      "file": "docs/recordings/polish/phone-reduced/lineup-2.png"
+    },
+    {
+      "key": "footer",
+      "seconds": 6.628,
+      "progress": null,
+      "file": "docs/recordings/polish/phone-reduced/footer.png"
+    }
+  ]
+}

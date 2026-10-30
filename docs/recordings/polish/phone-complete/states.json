@@ -1,0 +1,130 @@
+{
+  "case": {
+    "name": "phone-complete",
+    "width": 390,
+    "height": 844
+  },
+  "errors": [],
+  "states": [
+    {
+      "key": "00-logo",
+      "seconds": 1.635,
+      "progress": "0.0000",
+      "file": "docs/recordings/polish/phone-complete/00-logo.png"
+    },
+    {
+      "key": "01-wave-entry",
+      "seconds": 2.572,
+      "progress": "0.0649",
+      "file": "docs/recordings/polish/phone-complete/01-wave-entry.png"
+    },
+    {
+      "key": "02-wave-cover",
+      "seconds": 3.417,
+      "progress": "0.1149",
+      "file": "docs/recordings/polish/phone-complete/02-wave-cover.png"
+    },
+    {
+      "key": "03-wave-uncover",
+      "seconds": 4.445,
+      "progress": "0.1850",
+      "file": "docs/recordings/polish/phone-complete/03-wave-uncover.png"
+    },
+    {
+      "key": "04-wave-clear",
+      "seconds": 5.203,
+      "progress": "0.2300",
+      "file": "docs/recordings/polish/phone-complete/04-wave-clear.png"
+    },
+    {
+      "key": "05-mascot",
+      "seconds": 6.705,
+      "progress": "0.3099",
+      "file": "docs/recordings/polish/phone-complete/05-mascot.png"
+    },
+    {
+      "key": "06-sketch",
+      "seconds": 7.843,
+      "progress": "0.5000",
+      "file": "docs/recordings/polish/phone-complete/06-sketch.png"
+    },
+    {
+      "key": "07-eye-start",
+      "seconds": 8.977,
+      "progress": "0.5801",
+      "file": "docs/recordings/polish/phone-complete/07-eye-start.png"
+    },
+    {
+      "key": "08-eye-quarter",
+      "seconds": 9.988,
+      "progress": "0.6399",
+      "file": "docs/recordings/polish/phone-complete/08-eye-quarter.png"
+    },
+    {
+      "key": "09-eye-half",
+      "seconds": 11.174,
+      "progress": "0.6999",
+      "file": "docs/recordings/polish/phone-complete/09-eye-half.png"
+    },
+    {
+      "key": "10-eye-rim",
+      "seconds": 12.362,
+      "progress": "0.7599",
+      "file": "docs/recordings/polish/phone-complete/10-eye-rim.png"
+    },
+    {
+      "key": "11-threshold",
+      "seconds": 13.675,
+      "progress": "0.8199",
+      "file": "docs/recordings/polish/phone-complete/11-threshold.png"
+    },
+    {
+      "key": "12-passage",
+      "seconds": 14.771,
+      "progress": "0.8601",
+      "file": "docs/recordings/polish/phone-complete/12-passage.png"
+    },
+    {
+      "key": "13-exit-light",
+      "seconds": 15.899,
+      "progress": "0.9001",
+      "file": "docs/recordings/polish/phone-complete/13-exit-light.png"
+    },
+    {
+      "key": "14-backdrop",
+      "seconds": 17.032,
+      "progress": "0.9400",
+      "file": "docs/recordings/polish/phone-complete/14-backdrop.png"
+    },
+    {
+      "key": "15-portrait-settled",
+      "seconds": 18.053,
+      "progress": "0.9709",
+      "file": "docs/recordings/polish/phone-complete/15-portrait-settled.png"
+    },
+    {
+      "key": "16-arrival",
+      "seconds": 19.093,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/phone-complete/16-arrival.png"
+    },
+    {
+      "key": "lineup-1",
+      "seconds": 20.945,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/phone-complete/lineup-1.png"
+    },
+    {
+      "key": "lineup-2",
+      "seconds": 22.755,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/phone-complete/lineup-2.png"
+    },
+    {
+      "key": "footer",
+      "seconds": 24.244,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/phone-complete/footer.png"
+    }
+  ]
+}

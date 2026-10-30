@@ -2,6 +2,8 @@
 
 A responsive, configuration-driven festival template built from [the PRD](Pravaha_2k26_Website_PRD.md). React, TypeScript, Vite, GSAP ScrollTrigger, native scrolling. Final artwork and event announcements can arrive later.
 
+Latest refinement: a minimal logo opening, wave-shaped entry **and exit**, mascot fade-in, and independent hand/cloth movement. [Refinement notes](docs/opening-refinement.md) · [Desktop preview](docs/recordings/refinement/desktop.webm) · [Phone preview](docs/recordings/refinement/phone.webm).
+
 ## Run locally
 
 Requires Node.js 22.12+ and npm. Dependencies are pinned in `package.json` and `package-lock.json`.
@@ -88,7 +90,7 @@ The optional guest-enabled production fixture can be checked without changing so
 node scripts/verify-guest.mjs "ABSOLUTE_PATH_TO_CHROME"
 ```
 
-Before/after scroll clips and intermediate frames are in [`docs/recordings/`](docs/recordings/README.md). To capture a new version after building, run `node scripts/record-story.mjs after "ABSOLUTE_PATH_TO_CHROME"`. Playwright video recording needs its FFmpeg binary (`npx playwright install ffmpeg`).
+Complete homepage clips and intermediate frames are in [`docs/recordings/`](docs/recordings/README.md). To capture desktop, phone, reduced motion, reverse/fast scrolling and labelled guest/sponsor previews after building, run `node scripts/capture-polish.mjs "ABSOLUTE_PATH_TO_CHROME"`. Playwright video recording needs its FFmpeg binary (`npx playwright install ffmpeg`). See [the targeted visual polish report](docs/visual-polish.md) for current validation and comparable performance.
 
 For repeatable local payload/LCP/CLS and scroll-frame diagnostics after a build:
 

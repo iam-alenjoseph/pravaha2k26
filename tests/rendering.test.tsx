@@ -5,6 +5,8 @@ import { Sponsors } from '../src/components/Sponsors';
 import { defineEvents, events } from '../src/data/events';
 import { guest, artists, resolveLineup } from '../src/data/lineup';
 import { LineupPresentation } from '../src/components/Lineup';
+import { compatibleMascotRig } from '../src/lib/mascot';
+import { site } from '../src/config/site';
 
 describe('editable event contract', () => {
   it('preserves individual art, form, timing, rules and publication overrides', () => {
@@ -58,5 +60,16 @@ describe('homepage lineup selection', () => {
   });
   it('removes the guest without a placeholder record or residual first target', () => {
     expect(resolveLineup({ ...guest, enabled: false, previewInDevelopment: false }, artists, true)[0].id).toBe('artist-1');
+  });
+});
+
+describe('mascot art replacement', () => {
+  it('uses the matching rig but never overrides different mobile or replacement artwork', () => {
+    const art = site.assets.mascot;
+    expect(compatibleMascotRig(art, false)).toBe(art.rig);
+    const mobile = { ...art, colour: { ...art.colour, responsive: { mobile: '/custom-mobile.svg' } } };
+    expect(compatibleMascotRig(mobile, true)).toBeNull();
+    expect(compatibleMascotRig(mobile, false)).toBe(art.rig);
+    expect(compatibleMascotRig({ ...art, colour: { ...art.colour, path: '/final-mascot.svg' } }, false)).toBeNull();
   });
 });

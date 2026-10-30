@@ -1,0 +1,60 @@
+{
+  "measuredAt": "2026-10-30T18:28:59.339Z",
+  "hosting": "Local static build served with gzip; cold cache per profile",
+  "results": [
+    {
+      "profile": {
+        "name": "desktop-local",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "cpu": 1
+      },
+      "browser": "140.0.7339.16",
+      "lcp": 404,
+      "cls": 0.0000031378600823045264,
+      "lcpElement": "hero-logo",
+      "lcpUrl": "http://127.0.0.1:4180/assets/identity/pravaha-logo.jpeg",
+      "firstViewTransferBytes": 354741,
+      "scrollFrames": {
+        "frames": 150,
+        "medianMs": 20.899999999999636,
+        "p95Ms": 55.600000000000364,
+        "over50ms": 9
+      },
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "profile": {
+        "name": "mobile-simulated-4g",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "cpu": 4,
+        "network": {
+          "offline": false,
+          "latency": 150,
+          "downloadThroughput": 200000,
+          "uploadThroughput": 93750
+        }
+      },
+      "browser": "140.0.7339.16",
+      "lcp": 3660,
+      "cls": 0,
+      "lcpElement": "hero-logo",
+      "lcpUrl": "http://127.0.0.1:4180/assets/identity/pravaha-logo.jpeg",
+      "firstViewTransferBytes": 354741,
+      "scrollFrames": {
+        "frames": 150,
+        "medianMs": 14,
+        "p95Ms": 34.80000000000018,
+        "over50ms": 1
+      },
+      "errors": [],
+      "failedRequests": []
+    }
+  ]
+}

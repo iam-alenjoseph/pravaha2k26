@@ -21,12 +21,27 @@ const paths = [
   ['M410 376 Q430 465 396 548 L437 554 456 426Z', '#205969'],
 ];
 const details = `<g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M332 210q-35-56 6-84m12 76q-7-46 35-60m35 71q12-39 39-30m-25 45q56-29 73 14M333 235q-73-20-80 34t-84 14M443 244q61-13 67 28t65 36M361 298q25 15 50 2M375 318q15 6 24-2" stroke="#b1c4bc" stroke-width="2"/><path d="M366 382 350 460 368 544M413 391 421 471 400 534M304 404 234 502 206 496M470 369 492 352M304 575q40 35 77 32M301 610l-34 72m64-57-32 76m117-4 29 74m-99-61-35 50M184 933l40-8m284-1 33 3" stroke="#e3c99e" stroke-width="3"/></g>`;
-const colour = paths.map(([d, fill]) => `<path d="${d}" fill="${fill}" stroke="#102b3a" stroke-width="2" stroke-linejoin="round"/>`).join('');
+const colourParts = paths.map(([d, fill]) => `<path d="${d}" fill="${fill}" stroke="#102b3a" stroke-width="2" stroke-linejoin="round"/>`);
+const colour = colourParts.join('');
 const trailing = `<path d="M395 405C495 535 609 415 678 477S684 624 759 607C636 685 606 553 546 557S446 592 358 488" fill="#2b7180" opacity=".6"/><path d="M395 405C492 482 625 410 682 481" fill="none" stroke="#e9b85f" stroke-width="3"/>`;
 await save('mascot-colour', wrap(trailing + colour + details));
 const hatch = `<pattern id="hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(32)"><path d="M0 0V9" stroke="#34383d" stroke-opacity=".23" stroke-width="1"/></pattern>`;
-const sketch = paths.map(([d], i) => `<path d="${d}" fill="${i === 1 || i === 2 || i === 5 || i === 7 ? '#fff2d9' : 'url(#hatch)'}" stroke="#34383d" stroke-width="${i < 3 ? 2 : 2.7}" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#34383d" stroke-width=".8" opacity=".45" transform="translate(2 -1)"/>`).join('');
+const sketchParts = paths.map(([d], i) => `<path d="${d}" fill="${i === 1 || i === 2 || i === 5 || i === 7 ? '#fff2d9' : 'url(#hatch)'}" stroke="#34383d" stroke-width="${i < 3 ? 2 : 2.7}" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#34383d" stroke-width=".8" opacity=".45" transform="translate(2 -1)"/>`);
+const sketch = sketchParts.join('');
 await save('mascot-sketch', wrap(`<path d="M395 405C495 535 609 415 678 477S684 624 759 607C636 685 606 553 546 557S446 592 358 488" fill="url(#hatch)" stroke="#34383d" stroke-width="2"/>` + sketch + details.replaceAll('#b1c4bc', '#34383d').replaceAll('#e3c99e', '#34383d'), hatch));
+// One external sprite keeps matching colour/sketch joints on the same master canvas.
+const fixedDetails = details.replace('M304 404 234 502 206 496', '').replace('M470 369 492 352', '');
+const symbols = [];
+for (const variant of ['colour', 'sketch']) {
+  const pieces = variant === 'colour' ? colourParts : sketchParts;
+  const line = variant === 'colour' ? '#e3c99e' : '#34383d';
+  const body = pieces.filter((_, index) => ![4,5,6,7].includes(index)).join('') + (variant === 'colour' ? fixedDetails : fixedDetails.replaceAll('#b1c4bc','#34383d').replaceAll('#e3c99e','#34383d'));
+  const ribbon = variant === 'colour' ? trailing : '<path d="M395 405C495 535 609 415 678 477S684 624 759 607C636 685 606 553 546 557S446 592 358 488" fill="url(#hatch)" stroke="#34383d" stroke-width="2"/>';
+  for (const [name, content] of [['body', body], ['ribbon', ribbon], ['left-sleeve', pieces[4] + `<path d="M304 404 234 502 206 496" fill="none" stroke="${line}" stroke-width="3"/>`], ['left-hand', pieces[5]], ['right-sleeve', pieces[6] + `<path d="M470 369 492 352" fill="none" stroke="${line}" stroke-width="3"/>`], ['right-hand', pieces[7]]]) {
+    symbols.push(`<symbol id="${name}-${variant}" viewBox="0 0 800 1000">${content}</symbol>`);
+  }
+}
+await save('mascot-rig', wrap(symbols.join(''), hatch));
 const eye = 'M342 262Q365 244 389 262Q366 280 342 262Z';
 const otherEye = 'M398 260Q417 245 431 257Q416 273 398 260Z';
 await save('mascot-mask', wrap(`<path d="M331 238Q361 220 387 241Q413 222 442 237L435 281 412 288 393 277 370 290 339 280Z ${eye} ${otherEye}" fill="url(#gold)" fill-rule="evenodd" stroke="#ac793d" stroke-width="2"/><g fill="none" stroke="#fff2d9" stroke-width="1.3"><path d="M338 241 350 232 363 243 376 236M400 241 413 233 430 240M349 279l19 5 21-14M405 278l12 4 16-10"/><path d="M388 245 392 266 386 274"/></g><circle cx="392" cy="238" r="4" fill="#fff2d9"/>`, '<linearGradient id="gold" x2="1" y2="1"><stop stop-color="#fff0b2"/><stop offset=".45" stop-color="#e9b85f"/><stop offset="1" stop-color="#b77a36"/></linearGradient>'));

@@ -1,0 +1,101 @@
+{
+  "case": {
+    "name": "desktop-scrubbing",
+    "width": 1440,
+    "height": 900,
+    "scrub": true
+  },
+  "errors": [],
+  "states": [
+    {
+      "key": "00-logo",
+      "seconds": 1.832,
+      "progress": "0.0000",
+      "file": "docs/recordings/polish/desktop-scrubbing/00-logo.png"
+    },
+    {
+      "key": "wave-pause",
+      "seconds": 3.559,
+      "progress": "0.1850",
+      "file": "docs/recordings/polish/desktop-scrubbing/wave-pause.png"
+    },
+    {
+      "key": "sketch-pause",
+      "seconds": 5.245,
+      "progress": "0.5000",
+      "file": "docs/recordings/polish/desktop-scrubbing/sketch-pause.png"
+    },
+    {
+      "key": "eye-pause",
+      "seconds": 7.288,
+      "progress": "0.7000",
+      "file": "docs/recordings/polish/desktop-scrubbing/eye-pause.png"
+    },
+    {
+      "key": "passage-pause",
+      "seconds": 9.284,
+      "progress": "0.8601",
+      "file": "docs/recordings/polish/desktop-scrubbing/passage-pause.png"
+    },
+    {
+      "key": "eye-reverse",
+      "seconds": 11.091,
+      "progress": "0.7200",
+      "file": "docs/recordings/polish/desktop-scrubbing/eye-reverse.png"
+    },
+    {
+      "key": "sketch-reverse",
+      "seconds": 12.674,
+      "progress": "0.5000",
+      "file": "docs/recordings/polish/desktop-scrubbing/sketch-reverse.png"
+    },
+    {
+      "key": "wave-reverse",
+      "seconds": 14.289,
+      "progress": "0.1850",
+      "file": "docs/recordings/polish/desktop-scrubbing/wave-reverse.png"
+    },
+    {
+      "key": "logo-reverse",
+      "seconds": 15.926,
+      "progress": "0.0000",
+      "file": "docs/recordings/polish/desktop-scrubbing/logo-reverse.png"
+    },
+    {
+      "key": "fast-forward",
+      "seconds": 17.081,
+      "progress": "0.9000",
+      "file": "docs/recordings/polish/desktop-scrubbing/fast-forward.png"
+    },
+    {
+      "key": "fast-reverse",
+      "seconds": 18.234,
+      "progress": "0.6399",
+      "file": "docs/recordings/polish/desktop-scrubbing/fast-reverse.png"
+    },
+    {
+      "key": "fast-arrival",
+      "seconds": 19.476,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/desktop-scrubbing/fast-arrival.png"
+    },
+    {
+      "key": "lineup-1",
+      "seconds": 21.483,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/desktop-scrubbing/lineup-1.png"
+    },
+    {
+      "key": "lineup-2",
+      "seconds": 23.424,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/desktop-scrubbing/lineup-2.png"
+    },
+    {
+      "key": "footer",
+      "seconds": 25.061,
+      "progress": "1.0000",
+      "file": "docs/recordings/polish/desktop-scrubbing/footer.png"
+    }
+  ]
+}

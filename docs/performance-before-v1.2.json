@@ -1,0 +1,60 @@
+{
+  "measuredAt": "2026-10-30T10:06:27.376Z",
+  "hosting": "Local static build served with gzip; cold cache per profile",
+  "results": [
+    {
+      "profile": {
+        "name": "desktop-local",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "cpu": 1
+      },
+      "browser": "140.0.7339.16",
+      "lcp": 464,
+      "cls": 0.007806339652188357,
+      "lcpElement": {},
+      "lcpUrl": "http://127.0.0.1:4180/assets/placeholders/mascot-colour.svg",
+      "firstViewTransferBytes": 342079,
+      "scrollFrames": {
+        "frames": 150,
+        "medianMs": 7,
+        "p95Ms": 14,
+        "over50ms": 1
+      },
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "profile": {
+        "name": "mobile-simulated-4g",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "cpu": 4,
+        "network": {
+          "offline": false,
+          "latency": 150,
+          "downloadThroughput": 200000,
+          "uploadThroughput": 93750
+        }
+      },
+      "browser": "140.0.7339.16",
+      "lcp": 2716,
+      "cls": 0.00836145519090962,
+      "lcpElement": {},
+      "lcpUrl": "http://127.0.0.1:4180/assets/placeholders/mascot-colour.svg",
+      "firstViewTransferBytes": 342079,
+      "scrollFrames": {
+        "frames": 150,
+        "medianMs": 6.900000000000091,
+        "p95Ms": 7.099999999999909,
+        "over50ms": 0
+      },
+      "errors": [],
+      "failedRequests": []
+    }
+  ]
+}

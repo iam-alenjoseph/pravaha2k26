@@ -1,5 +1,7 @@
 # Verification — PRD v1.2, 30 October 2026
 
+**Latest update:** [Targeted visual polish](visual-polish.md) supersedes the opening refinement for reveal overlap, visible eye approach and passage depth. It includes complete recordings, visible-rim geometry checks and a fresh hero-logo LCP comparison. Historical measurements and check counts below describe earlier versions; `performance.json` records the latest build.
+
 This pass continues the existing template. Earlier notes are preserved in `verification-v1.0.md`; the current implementation is governed by the root v1.2 PRD.
 
 ## Result and checks

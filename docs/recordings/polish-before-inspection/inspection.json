@@ -1,0 +1,20 @@
+{
+  "clip": "C:\\Games\\Pravaha Website\\docs\\recordings\\refinement\\desktop.webm",
+  "duration": 21.32,
+  "streams": [
+    {
+      "codec_name": "vp9",
+      "width": 960,
+      "height": 600
+    }
+  ],
+  "inspectedSeconds": [
+    6,
+    7.5,
+    9,
+    16.8,
+    17.1,
+    17.7,
+    18
+  ]
+}
