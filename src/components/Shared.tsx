@@ -5,6 +5,7 @@ import { site } from '../config/site';
 import { registrationAction } from '../lib/policies';
 import type { Asset, EventRecord } from '../types';
 import { useMobile } from '../lib/media';
+import { AnimatedEventArt } from './AnimatedEventArt';
 
 export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={diagonal ? 'M6 18 18 6M6 6h12v12' : 'M4 12h15m-6-6 6 6-6 6'} stroke="currentColor" strokeWidth="1.5" /></svg>;
@@ -30,13 +31,26 @@ export function Registration({ event }: { event: EventRecord }) {
     : <span className={`registration-state ${event.registrationState}`}><span className="status-dot" />{action.label}</span>;
 }
 export function EventCard({ event, index }: { event: EventRecord; index: number }) {
-  return <article className={`event-card ${event.art}`} style={{ '--event-accent': event.accent } as CSSProperties}>
+  const [isHovered, setIsHovered] = useState(false);
+  return <article 
+    className={`event-card ${event.art}`} 
+    style={{ '--event-accent': event.accent } as CSSProperties}
+    onMouseEnter={() => setIsHovered(true)}
+    onMouseLeave={() => setIsHovered(false)}
+  >
     <Link className="event-art-link" to={`/events/${event.slug}`} aria-label={`Explore ${event.title}`}>
-      {event.image ? <ArtImage asset={event.image} className="event-art" /> : <div className="art-fallback"><Spark /></div>}
-      <span className="art-number">0{index + 1}</span><span className="art-category">{event.category}</span><span className="art-action"><Arrow diagonal /></span>
+      <AnimatedEventArt
+        eventId={event.id}
+        alt={`Pravaha ${event.title}`}
+        className="event-art"
+        isParentHovered={isHovered}
+        staggerIndex={index}
+      />
+      <span className="art-number">0{index + 1} · {event.category.toUpperCase()}</span>
+      <span className="art-action"><Arrow diagonal /></span>
     </Link>
     <div className="event-card-heading"><h3><Link to={`/events/${event.slug}`}>{event.title}</Link></h3><span>0{index + 1}</span></div>
     <p className="event-kicker">{event.kicker}</p><p className="event-description">{event.description}</p>
-    <div className="event-card-actions"><Link to={`/events/${event.slug}`} className="text-link">Event details <Arrow /></Link><Registration event={event} /></div>
+    <div className="event-card-actions"><Link to={`/events/${event.slug}`} className="text-link">Explore {event.title} <Arrow /></Link><Registration event={event} /></div>
   </article>;
 }

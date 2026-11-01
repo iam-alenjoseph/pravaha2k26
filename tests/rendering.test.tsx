@@ -47,7 +47,7 @@ describe('homepage lineup selection', () => {
     expect(html).toContain('object-position:65% 20%');
   });
   it('keeps an uncertain guest off production and resolves exactly two artists in order', () => {
-    expect(resolveLineup(guest, artists, false).map(entry => entry.id)).toEqual(['artist-1', 'artist-2']);
+    expect(resolveLineup({ ...guest, enabled: false }, artists, false).map(entry => entry.id)).toEqual(['artist-1', 'artist-2']);
   });
   it('uses the same guest first for approved production and clearly labelled development previews', () => {
     const preview = resolveLineup({ ...guest, enabled: false, previewInDevelopment: true }, artists, true);

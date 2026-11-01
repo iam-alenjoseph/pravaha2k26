@@ -4,6 +4,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Header, Footer } from './components/Chrome';
 import Home from './pages/Home';
 import { EventsPage, EventDetail, SchedulePage, NotFound } from './pages/Supporting';
+import { AtmosphereCanvas } from './components/AtmosphereCanvas';
+import { CursorGlow } from './components/CursorGlow';
 import { motion } from './config/motion';
 import { site } from './config/site';
 
@@ -48,6 +50,31 @@ function SiteApp() {
     document.documentElement.dataset.motion = reduced ? 'reduced' : 'full';
     for (const [token,value] of Object.entries(site.theme)) document.documentElement.style.setProperty(`--${token.replace(/[A-Z]/g, x => `-${x.toLowerCase()}`)}`, value);
   }, [reduced]);
-  return <><ScrollAndTitle /><Header /><main id="main" tabIndex={-1}><Routes><Route path="/" element={<Home reduced={reduced} />} /><Route path="/events" element={<EventsPage />} /><Route path="/events/:slug" element={<EventDetail />} /><Route path="/schedule" element={<SchedulePage />} /><Route path="*" element={<NotFound />} /></Routes></main><Footer reduced={reduced} onToggle={() => { const next = !reduced; setReduced(next); try { localStorage.setItem(motion.reducedMotion.storageKey, String(next)); } catch { /* Still works for this visit. */ } }} /></>;
+  return (
+    <>
+      <ScrollAndTitle />
+      <AtmosphereCanvas reduced={reduced} />
+      <CursorGlow reduced={reduced} />
+      <div className="fest-halftone-grain" aria-hidden="true" />
+      <Header />
+      <main id="main" tabIndex={-1}>
+        <Routes>
+          <Route path="/" element={<Home reduced={reduced} />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/events/:slug" element={<EventDetail />} />
+          <Route path="/schedule" element={<SchedulePage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+      <Footer
+        reduced={reduced}
+        onToggle={() => {
+          const next = !reduced;
+          setReduced(next);
+          try { localStorage.setItem(motion.reducedMotion.storageKey, String(next)); } catch { /* Still works for this visit. */ }
+        }}
+      />
+    </>
+  );
 }
 export default function App() { return <BrowserRouter><SiteApp /></BrowserRouter>; }

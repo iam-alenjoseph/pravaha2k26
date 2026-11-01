@@ -1,3 +1,4 @@
+@import url('https://fonts.cdnfonts.com/css/lemon-milk');
 /* v1.2: one scroll driver, a crest-shaped curtain, and three spaces at the eye. */
 .site-header.on-home{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s,visibility .25s}
 .past-logo .site-header.on-home,[data-motion='reduced'] .site-header.on-home,.site-header.on-home:focus-within{opacity:1;visibility:visible;pointer-events:auto}
@@ -60,8 +61,1818 @@ a:active,button:active{filter:brightness(.88)}
 .hero-date{font-size:11px;color:#c1c8c2;margin-top:16px;letter-spacing:1px}
 .hero-bottom{bottom:32px;align-items:center;min-height:44px}
 .hero-explore{display:flex;align-items:center;gap:16px;border:0;padding:0;min-height:44px;font-size:12px;max-width:none}
-.hero-explore>svg{width:18px;height:18px}.scroll-cue{bottom:0;gap:13px;font-size:9px;letter-spacing:1.5px;color:#aebbb8}.scroll-stem{height:35px}
+.hero-explore>svg{width:18px;height:18px}.scroll-cue{display:none!important}
 .skip-intro{bottom:32px;background:transparent;border:0;color:#b9c4be;font-size:10px;padding:0;min-height:44px}
 .skip-intro:hover{color:var(--gold)}.lineup-display{max-width:11ch}
 @media(max-width:767px){.hero-identity{top:0;padding-bottom:7svh}.hero-logo{width:min(110vw,640px);max-width:none;margin:0}.hero-edition{margin-top:-44px;font-size:9px}.hero-bottom{bottom:26px}.hero-explore{font-size:11px;gap:10px}.scroll-cue{bottom:0;font-size:8px;gap:10px}.scroll-stem{height:29px}.skip-intro{bottom:26px;font-size:9px}.lineup-announcement{max-width:28ch}.lineup-display{font-size:clamp(59px,15vw,90px)}}
 @media(max-height:500px){.hero-identity{padding-bottom:8svh}.hero-logo{width:min(70svh,420px)}.hero-edition{margin-top:-25px;font-size:8px}.hero-bottom,.skip-intro{bottom:15px}.scroll-cue{display:flex}.scroll-stem{height:18px}}
+
+
+/* ==========================================================================
+   DHWANI CET INSPIRED ANIMATIONS, STAGING & VISUAL EFFECTS
+   ========================================================================== */
+
+/* 1. Atmospheric Particle Canvas & Ambient Cursor Glow */
+.fest-atmosphere-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 25;
+}
+
+.fest-cursor-glow {
+  position: fixed;
+  top: -120px;
+  left: -120px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 28;
+  background: radial-gradient(circle, rgba(233, 184, 95, 0.22) 0%, rgba(43, 113, 128, 0.14) 45%, transparent 70%);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+  transition: opacity 0.3s ease;
+}
+
+.fest-halftone-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 26;
+  opacity: 0.04;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.8) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+/* 2. Opening Hero: Floating Clouds & Concentric Animated Aura */
+.hero-clouds-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-cloud {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero-cloud-rear {
+  bottom: 0%;
+  left: -10%;
+  width: 120%;
+  opacity: 0.22;
+  animation: cloudDriftRear 28s ease-in-out infinite alternate;
+}
+
+.hero-cloud-front {
+  bottom: -8%;
+  right: -10%;
+  width: 115%;
+  opacity: 0.32;
+  animation: cloudDriftFront 22s ease-in-out infinite alternate;
+}
+
+@keyframes cloudDriftRear {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(50px, -15px, 0); }
+}
+
+@keyframes cloudDriftFront {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-45px, 10px, 0); }
+}
+
+.hero-logo-aura {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(75vw, 680px);
+  height: min(75vw, 680px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.aura-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.aura-ring-outer {
+  width: min(85vw, 640px);
+  height: min(85vw, 640px);
+  border: 1px solid rgba(233, 184, 95, 0.2);
+  animation: auraPulse 6s ease-in-out infinite;
+}
+
+.aura-ring-mid {
+  width: min(60vw, 460px);
+  height: min(60vw, 460px);
+  border: 1px dashed rgba(43, 113, 128, 0.35);
+  animation: auraPulse 4.5s ease-in-out infinite reverse;
+}
+
+.aura-pulse-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(45vw, 360px);
+  height: min(45vw, 360px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(233, 184, 95, 0.25) 0%, rgba(43, 113, 128, 0.12) 50%, transparent 75%);
+  filter: blur(28px);
+  animation: auraGlow 5s ease-in-out infinite alternate;
+}
+
+@keyframes auraPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+  50% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.8; }
+}
+
+@keyframes auraGlow {
+  0% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.45; }
+  100% { transform: translate(-50%, -50%) scale(1.18); opacity: 0.85; }
+}
+
+.hero-theme-pill {
+  display: inline-block;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--gold);
+  border: 1px solid rgba(233, 184, 95, 0.35);
+  padding: 5px 16px;
+  border-radius: 20px;
+  margin-top: 14px;
+  background: rgba(7, 19, 34, 0.65);
+  backdrop-filter: blur(10px);
+  text-transform: uppercase;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* 3. Dhwani-Style Mascot Guardian Staging Across Lineup */
+.fest-mascot-guardian {
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: none;
+  width: min(30vw, 380px);
+  max-height: 82vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.fest-mascot-img {
+  width: 100%;
+  height: auto;
+  max-height: 78vh;
+  object-fit: contain;
+  filter: drop-shadow(0 0 25px rgba(233, 184, 95, 0.35)) drop-shadow(0 15px 35px rgba(0, 0, 0, 0.85));
+  animation: mascotHoverFloat 6.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.treatment-guest .fest-mascot-guardian,
+.treatment-teal .fest-mascot-guardian {
+  left: 2%;
+}
+
+.treatment-gold .fest-mascot-guardian {
+  right: 2%;
+}
+
+.mascot-aura-halo {
+  position: absolute;
+  inset: 15% 10% 20% 10%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(233, 184, 95, 0.22) 0%, rgba(43, 113, 128, 0.12) 50%, transparent 75%);
+  filter: blur(35px);
+  pointer-events: none;
+  z-index: -1;
+  animation: haloBreathe 5s ease-in-out infinite;
+}
+
+@keyframes mascotHoverFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+
+@keyframes haloBreathe {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.15); opacity: 0.75; }
+}
+
+/* 4. Concentric Pulsating Rings in Lineup Backdrop */
+.fest-concentric-rings {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.ring-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(233, 184, 95, 0.15);
+  transform: translate(-50%, -50%);
+  animation: concentricRipple 8s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+.ring-pulse-1 {
+  width: 380px;
+  height: 380px;
+  animation-delay: 0s;
+}
+
+.ring-pulse-2 {
+  width: 580px;
+  height: 580px;
+  border-color: rgba(43, 113, 128, 0.2);
+  animation-delay: 2.6s;
+}
+
+.ring-pulse-3 {
+  width: 780px;
+  height: 780px;
+  border-color: rgba(233, 184, 95, 0.12);
+  animation-delay: 5.2s;
+}
+
+@keyframes concentricRipple {
+  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+  25% { opacity: 0.5; }
+  75% { opacity: 0.3; }
+  100% { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
+}
+
+.lineup-cloud-grounding {
+  position: absolute;
+  bottom: -5%;
+  left: -5%;
+  width: 110%;
+  opacity: 0.28;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 5. Secret Headliner Portal with Hidden Artist & Radar Beam */
+.fest-mystery-portal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mystery-silhouette-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 35px rgba(233, 184, 95, 0.45));
+}
+
+.mystery-radar-glow {
+  position: absolute;
+  inset: -12%;
+  border-radius: 50%;
+  border: 1px dashed rgba(233, 184, 95, 0.3);
+  animation: radarRotate 10s linear infinite;
+  pointer-events: none;
+}
+
+.radar-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 70%, rgba(233, 184, 95, 0.25) 100%);
+}
+
+.radar-beacon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px var(--gold);
+}
+
+@keyframes radarRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 6. Responsive adjustments for festival components */
+@media (max-width: 1024px) {
+  .fest-mascot-guardian {
+    width: min(34vw, 300px);
+    opacity: 0.85;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-cloud-rear, .hero-cloud-front {
+    opacity: 0.25;
+  }
+  .aura-ring-outer {
+    width: 90vw;
+    height: 90vw;
+  }
+  .hero-theme-pill {
+    font-size: 7px;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-cloud-rear, .hero-cloud-front,
+  .aura-ring-outer, .aura-ring-mid, .aura-pulse-glow,
+  .fest-mascot-img, .mascot-aura-halo,
+  .ring-pulse, .mystery-radar-glow {
+    animation: none !important;
+  }
+}
+
+
+/* Events overview mascot host */
+.events-overview-page .page-intro {
+  position: relative;
+}
+
+.events-mascot-host {
+  position: absolute;
+  right: 0;
+  bottom: -15px;
+  width: min(22vw, 220px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.events-mascot-host .fest-mascot-img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(233, 184, 95, 0.3)) drop-shadow(0 10px 25px rgba(0, 0, 0, 0.5));
+}
+
+@media (max-width: 900px) {
+  .events-mascot-host {
+    display: none;
+  }
+}
+
+
+/* Hero illustrated backdrop from Components */
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.hero-backdrop-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.4;
+  filter: saturate(1.2) brightness(0.75);
+  mask-image: radial-gradient(ellipse at 50% 50%, black 35%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 35%, transparent 85%);
+}
+
+.lineup-backdrop {
+  background: #071322 !important;
+}
+
+.lineup-backdrop-image {
+  opacity: 0.8 !important;
+  mask-image: radial-gradient(ellipse 95% 90% at 50% 50%, black 45%, rgba(0, 0, 0, 0.4) 85%, transparent 100%) !important;
+  -webkit-mask-image: radial-gradient(ellipse 95% 90% at 50% 50%, black 45%, rgba(0, 0, 0, 0.4) 85%, transparent 100%) !important;
+}
+
+/* Ensure lineup portraits show artist and guest with rich presence */
+.lineup-portrait-image {
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%) !important;
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%) !important;
+  filter: drop-shadow(0 0 30px rgba(233, 184, 95, 0.3)) drop-shadow(0 15px 35px rgba(0, 0, 0, 0.8));
+}
+
+
+/* Equalized effects for all artists including special guest */
+.lineup-portrait-image {
+  animation: portraitFloat 6.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes portraitFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.treatment-guest {
+  --scene-accent: #e9b85f !important;
+}
+
+.treatment-guest .lineup-halo {
+  border-color: rgba(233, 184, 95, 0.3) !important;
+  box-shadow: 0 0 0 45px rgba(233, 184, 95, 0.05), 0 0 0 90px rgba(233, 184, 95, 0.03) !important;
+}
+
+
+/* ==========================================================================
+   LANDING PAGE EXACT maincoverwithcharacter.png & CLOUD CURTAIN REVISION
+   ========================================================================== */
+
+/* ==========================================================================
+   DYNAMIC MULTI-LAYER LANDING HERO (Composed from Components)
+   Refined sizing: Reduced mascot, background & clouds with premium logo alignment
+   ========================================================================== */
+
+.landing-cover-hero {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  overflow: hidden;
+  background: #071322;
+}
+
+.landing-layers-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Header & Footer Brand Logos from Components (eventlogo.png) */
+.brand-logo-img {
+  height: 48px;
+  width: auto;
+  max-width: 170px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 10px rgba(233, 184, 95, 0.45)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.brand:hover .brand-logo-img {
+  transform: scale(1.05);
+  filter: drop-shadow(0 3px 16px rgba(233, 184, 95, 0.7)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.9));
+}
+
+.footer-logo-img {
+  height: 80px;
+  width: auto;
+  max-width: 260px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 20px rgba(233, 184, 95, 0.45));
+  transition: transform 0.25s ease;
+}
+
+.footer-logo-img:hover {
+  transform: scale(1.04);
+}
+
+/* Layer 1: Celestial Realm Backdrop (Palace, Moon, Starry Sky & River)
+   Full-width edge-to-edge immersive coverage without letterboxing */
+/* Layer 1: Celestial Realm Backdrop Base (Palace, Moon, Starry Sky & River)
+   Full-width edge-to-edge immersive coverage */
+.landing-layer-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none !important;
+  margin: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  transform: none !important;
+  object-fit: cover !important;
+  object-position: center 20% !important;
+  z-index: 1;
+  filter: brightness(0.96);
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+
+/* Layer 2: High-Definition Animated Character Video with Crisp Alpha Feathering */
+.landing-layer-video-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none !important;
+  margin: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  object-fit: cover !important;
+  object-position: center 18% !important;
+  z-index: 2;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+  /* Hardware-accelerated crystal-clear rendering */
+  image-rendering: -webkit-optimize-contrast !important;
+  image-rendering: crisp-edges !important;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform, opacity;
+  /* High-clarity contrast & rich color vibrancy */
+  filter: contrast(1.05) brightness(1.02) saturate(1.04);
+  /* Seamless alpha blend: solid 100% opaque mascot in center, soft feathered dissolution into celestial night realm at edges */
+  mask-image: radial-gradient(ellipse 68% 78% at 50% 32%, #000 52%, rgba(0, 0, 0, 0.75) 75%, transparent 100%),
+              linear-gradient(to bottom, #000 0%, #000 78%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 68% 78% at 50% 32%, #000 52%, rgba(0, 0, 0, 0.75) 75%, transparent 100%),
+                      linear-gradient(to bottom, #000 0%, #000 78%, transparent 95%);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .landing-layer-video-backdrop {
+    object-position: center 16% !important;
+    mask-image: radial-gradient(ellipse 92% 82% at 50% 32%, #000 60%, rgba(0, 0, 0, 0.75) 82%, transparent 100%),
+                linear-gradient(to bottom, #000 0%, #000 78%, transparent 95%);
+    -webkit-mask-image: radial-gradient(ellipse 92% 82% at 50% 32%, #000 60%, rgba(0, 0, 0, 0.75) 82%, transparent 100%),
+                        linear-gradient(to bottom, #000 0%, #000 78%, transparent 95%);
+  }
+}
+
+[data-motion='reduced'] .landing-layer-video-backdrop {
+  display: none !important;
+}
+
+/* Layers 3 & 4: Atmospheric Floating Clouds from Components */
+.landing-layer-cloud {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.landing-cloud-back {
+  bottom: 4%;
+  left: 2%;
+  width: 76%;
+  max-width: 820px;
+  height: auto;
+  max-height: 25vh;
+  object-fit: contain;
+  z-index: 3;
+  opacity: 0.72;
+  animation: festCloudDriftBack 16s ease-in-out infinite alternate;
+}
+
+.landing-cloud-fore {
+  bottom: -2%;
+  right: -2%;
+  width: 44%;
+  max-width: 480px;
+  height: auto;
+  max-height: 28vh;
+  object-fit: contain;
+  z-index: 4;
+  opacity: 0.85;
+  filter: drop-shadow(0 -6px 20px rgba(7, 19, 34, 0.75));
+  animation: festCloudDriftFore 12s ease-in-out infinite alternate;
+}
+
+
+@keyframes festMascotFloat {
+  0% {
+    transform: translateX(-50%) translateY(0px) scale(1);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-8px) scale(1.008);
+  }
+}
+
+@keyframes festCloudDriftBack {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  100% {
+    transform: translateX(20px) translateY(-6px);
+  }
+}
+
+@keyframes festCloudDriftFore {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  100% {
+    transform: translateX(-22px) translateY(-5px);
+  }
+}
+
+[data-motion='reduced'] .landing-layer-mascot {
+  animation: none !important;
+  transform: translateX(-50%) !important;
+}
+
+[data-motion='reduced'] .landing-layer-cloud {
+  animation: none !important;
+}
+
+/* Landing Identity: Premium royal alignment in upper starry sky */
+.hero-identity,
+.landing-hero-identity {
+  position: absolute;
+  inset: 0;
+  top: 0;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding-top: clamp(20px, 3.2svh, 36px) !important;
+  padding-bottom: 0 !important;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.hero-logo,
+.landing-hero-logo {
+  width: clamp(250px, 26vw, 340px) !important;
+  max-width: 350px !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  filter: drop-shadow(0 0 28px rgba(233, 184, 95, 0.55)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.88)) !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+
+/* The authentic eventlogo.png already incorporates 3D gold 2k26 lettering; hide redundant flat text */
+.landing-hero-identity .hero-edition {
+  display: none !important;
+}
+
+.hero-edition {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.4em !important;
+  color: #e9b85f !important;
+  margin-top: 10px !important;
+  padding-left: 0.4em !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.hero-theme-pill,
+.landing-hero-identity .hero-theme-pill {
+  font-size: 8px !important;
+  font-weight: 700 !important;
+  letter-spacing: 2.8px !important;
+  color: #fff2d9 !important;
+  border: 1px solid rgba(233, 184, 95, 0.55) !important;
+  padding: 4px 14px !important;
+  border-radius: 9999px !important;
+  margin-top: 6px !important;
+  background: rgba(7, 19, 34, 0.82) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.7), 0 0 14px rgba(233, 184, 95, 0.2) !important;
+}
+
+.hero-bottom {
+  position: absolute;
+  bottom: 22px !important;
+  left: var(--gutter) !important;
+  right: var(--gutter) !important;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  min-height: 44px;
+  z-index: 5;
+}
+
+/* 2. Pro-Show Lineup: Clean 2-Column Split & No Text/Mascot Collisions */
+.lineup-composition {
+  min-height: 100svh;
+  height: 100svh;
+  overflow: hidden;
+  padding: clamp(90px, 12svh, 120px) var(--gutter) 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  position: relative;
+  isolation: isolate;
+  background: #071322 !important;
+}
+
+/* Column 1: Copy and Headings */
+.treatment-guest .lineup-copy,
+.treatment-teal .lineup-copy {
+  width: 48% !important;
+  max-width: 52% !important;
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  z-index: 4 !important;
+  pointer-events: auto;
+}
+
+.treatment-gold .lineup-copy {
+  width: 48% !important;
+  max-width: 52% !important;
+  margin-top: 0 !important;
+  margin-left: auto !important;
+  padding-left: 3% !important;
+  z-index: 4 !important;
+  pointer-events: auto;
+}
+
+/* Column 2: Artist Portraits */
+.treatment-guest .lineup-portrait,
+.treatment-teal .lineup-portrait {
+  position: absolute !important;
+  right: 5% !important;
+  left: auto !important;
+  bottom: 0 !important;
+  width: 44% !important;
+  height: 82% !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  z-index: 3 !important;
+}
+
+.treatment-gold .lineup-portrait {
+  position: absolute !important;
+  left: 5% !important;
+  right: auto !important;
+  bottom: 0 !important;
+  width: 44% !important;
+  height: 82% !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  z-index: 3 !important;
+}
+
+@media (min-width: 768px) {
+  /* Mascot Guardian Companion: Grand scale, premium presence and pinpoint alignment */
+  .treatment-guest .fest-mascot-guardian,
+  .treatment-teal .fest-mascot-guardian {
+    position: absolute !important;
+    right: 34% !important;
+    left: auto !important;
+    bottom: 0 !important;
+    width: clamp(340px, 32vw, 540px) !important;
+    height: 86% !important;
+    max-height: 86vh !important;
+    z-index: 2 !important;
+    opacity: 0.95 !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    pointer-events: none;
+  }
+
+  .treatment-gold .fest-mascot-guardian {
+    position: absolute !important;
+    left: 34% !important;
+    right: auto !important;
+    bottom: 0 !important;
+    width: clamp(340px, 32vw, 540px) !important;
+    height: 86% !important;
+    max-height: 86vh !important;
+    z-index: 2 !important;
+    opacity: 0.95 !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    pointer-events: none;
+  }
+}
+
+.fest-mascot-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+  filter: drop-shadow(0 0 28px rgba(233, 184, 95, 0.42)) drop-shadow(0 20px 45px rgba(0, 0, 0, 0.85)) brightness(1.05) contrast(1.04) !important;
+  image-rendering: -webkit-optimize-contrast;
+  animation: mascotHoverFloat 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Pro-Show Typography */
+.lineup-display {
+  font-family: var(--font-lemon) !important;
+  font-weight: 500 !important;
+  font-size: clamp(48px, 6vw, 98px) !important;
+  letter-spacing: -2.5px !important;
+  line-height: 0.9 !important;
+  max-width: 12ch !important;
+  overflow-wrap: anywhere;
+}
+
+.lineup-announcement {
+  font-size: clamp(14px, 1.25vw, 18px) !important;
+  line-height: 1.6 !important;
+  margin-top: 22px !important;
+  color: var(--ivory) !important;
+  max-width: 32ch !important;
+}
+
+.lineup-description {
+  font-size: 13px !important;
+  line-height: 1.85 !important;
+  max-width: 34ch !important;
+  color: #a5b9b6 !important;
+  margin-top: 12px !important;
+}
+
+.lineup-meta {
+  position: absolute !important;
+  top: clamp(85px, 11svh, 115px) !important;
+  left: var(--gutter) !important;
+  right: var(--gutter) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-top: 1px solid rgba(255, 242, 217, 0.15) !important;
+  padding-top: 16px !important;
+  font-size: 9.5px !important;
+  letter-spacing: 2px !important;
+  color: #b5ccc5 !important;
+}
+
+/* 3. Mobile Responsive Adjustments */
+@media (max-width: 767px) {
+  .hero-identity,
+  .landing-hero-identity {
+    padding-top: max(18px, 3svh) !important;
+  }
+  .hero-logo,
+  .landing-hero-logo {
+    width: min(65vw, 240px) !important;
+  }
+  .brand-logo-img {
+    height: 38px !important;
+  }
+  .footer-logo-img {
+    height: 60px !important;
+  }
+  .landing-layer-backdrop {
+    max-width: 100% !important;
+    left: 0 !important;
+    transform: none !important;
+    object-position: center 20% !important;
+  }
+  .landing-layer-mascot {
+    height: 78vh !important;
+    max-height: 700px !important;
+    min-height: 440px !important;
+    bottom: 0 !important;
+  }
+  .landing-cloud-back {
+    width: 90% !important;
+    max-height: 20vh !important;
+    bottom: 2% !important;
+  }
+  .landing-cloud-fore {
+    width: 60% !important;
+    max-height: 22vh !important;
+    bottom: -2% !important;
+  }
+  .lineup-composition {
+    padding: 95px var(--gutter) 30px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+  .treatment-guest .lineup-copy,
+  .treatment-teal .lineup-copy,
+  .treatment-gold .lineup-copy {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    margin-top: 35px !important;
+  }
+  .lineup-display {
+    font-size: clamp(42px, 11.5vw, 65px) !important;
+    letter-spacing: -1.5px !important;
+    line-height: 0.92 !important;
+  }
+  .lineup-announcement {
+    font-size: 12.5px !important;
+    margin-top: 14px !important;
+    max-width: 28ch !important;
+  }
+  .lineup-description {
+    font-size: 11.5px !important;
+    line-height: 1.6 !important;
+    margin-top: 8px !important;
+    max-width: 30ch !important;
+  }
+  .lineup-meta {
+    top: 78px !important;
+    font-size: 7.5px !important;
+    padding-top: 12px !important;
+  }
+}
+
+/* ==========================================================================
+   LEMON MILK TYPOGRAPHY FOR EVENTS & SCHEDULE SECTIONS
+   ========================================================================== */
+
+:root {
+  --font-lemon: 'Lemon Milk', 'LEMON MILK', 'Lemon/Milk', 'Manrope Variable', sans-serif;
+}
+
+/* 1. Events Overview Page (/events) */
+.events-overview-page .page-intro h1 {
+  font-family: var(--font-lemon) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+
+.events-overview-page .page-intro h1 em {
+  font-family: var(--font-lemon) !important;
+  font-style: normal !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+
+.events-overview-page .page-intro .eyebrow,
+.events-overview-page .page-intro .pill {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+}
+
+.events-overview-page .page-intro p {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.03em !important;
+  font-weight: 500 !important;
+}
+
+/* Event Cards */
+.event-card .art-number,
+.event-card .art-category {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.12em !important;
+  font-weight: 700 !important;
+}
+
+.event-card-heading h3 {
+  font-family: var(--font-lemon) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+.event-card-heading > span {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.1em !important;
+}
+
+.event-kicker {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.04em !important;
+  font-weight: 600 !important;
+}
+
+.event-description {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.02em !important;
+  font-weight: 400 !important;
+}
+
+.event-card-actions .text-link,
+.registration-state,
+.registration-link {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+}
+
+.events-overview-page .info-note p,
+.events-overview-page .info-note .text-link {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* 2. Event Detail Pages (/events/:slug) */
+.detail-page .back-link,
+.detail-page .detail-top .eyebrow,
+.detail-page .detail-register .pill {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+.detail-page .detail-top h1 {
+  font-family: var(--font-lemon) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+
+.detail-page .detail-top h1 em {
+  font-family: var(--font-lemon) !important;
+  font-style: normal !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+}
+
+.detail-page .detail-description {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.02em !important;
+}
+
+.detail-page .detail-information h2,
+.detail-page .detail-information .eyebrow,
+.detail-page .detail-information dt {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+.detail-page .detail-information dd,
+.detail-page .rules-panel p,
+.detail-page .rules-panel li {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* 3. Schedule Page (/schedule) */
+.schedule-page .page-intro .eyebrow {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+}
+
+.schedule-page .page-intro h1 {
+  font-family: var(--font-lemon) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+
+.schedule-page .page-intro h1 em {
+  font-family: var(--font-lemon) !important;
+  font-style: normal !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+}
+
+.schedule-page .page-intro p {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+
+.schedule-page .empty-state .eyebrow,
+.schedule-page .empty-state h2,
+.schedule-page .empty-state .button {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+}
+
+.schedule-page .empty-state p {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.03em !important;
+}
+
+.schedule-page .timezone-note {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.04em !important;
+}
+
+.schedule-groups h2,
+.schedule-row time,
+.schedule-row a,
+.schedule-row span {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Programs / Events Section */
+.programs-intro .eyebrow,
+.programs-intro .section-title,
+.programs-intro .section-title em,
+.programs-closing p,
+.programs-closing p em {
+  font-family: var(--font-lemon) !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+
+
+/* Clean info-note layout without the spark icon */
+.info-note {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+}
+
+.info-note p {
+  flex: 1 1 320px !important;
+  margin: 0 !important;
+}
+
+.info-note .text-link {
+  margin-left: 0 !important;
+}
+
+
+/* ==========================================================================
+   UNIFORM GLOBAL LEMON MILK TYPOGRAPHY SYSTEM
+   ========================================================================== */
+:root {
+  --font-lemon: 'LEMON MILK', 'Lemon Milk', 'Lemon/Milk', sans-serif !important;
+  --sans: var(--font-lemon) !important;
+  --serif: var(--font-lemon) !important;
+}
+
+*, *::before, *::after,
+html, body, #root,
+h1, h2, h3, h4, h5, h6,
+p, a, span, button, input, select, textarea,
+dt, dd, dl, li, em, strong, small, time, label,
+.site-header, .site-header *,
+.site-footer, .site-footer *,
+.hero, .hero *,
+.story-stage, .story-stage *,
+.lineup-composition, .lineup-composition *,
+.lineup-display, .lineup-announcement, .lineup-description,
+.programs-section, .programs-section *,
+.artists-section, .artists-section *,
+.sponsors-section, .sponsors-section *,
+.support-page, .support-page *,
+.detail-page, .detail-page *,
+.events-overview-page, .events-overview-page *,
+.schedule-page, .schedule-page * {
+  font-family: var(--font-lemon) !important;
+}
+
+.section-title,
+.artists-heading h2,
+.footer-wordmark,
+.page-intro h1,
+.detail-top h1,
+.empty-state h2,
+.schedule-groups h2,
+.lineup-display {
+  letter-spacing: 0.02em !important;
+}
+
+/* Seamless Direct Scroll Flow from Landing to Artist Lineup */
+.story-shell,
+.landing-direct-shell {
+  position: relative !important;
+  height: 100svh !important;
+  min-height: 100svh !important;
+  max-height: 100svh !important;
+  overflow: hidden !important;
+  background: var(--midnight) !important;
+}
+
+.story-stage,
+.landing-direct-stage {
+  position: relative !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  isolation: isolate;
+}
+
+.lineup-list {
+  position: relative !important;
+  margin-top: 0 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 3 !important;
+}
+
+.lineup-section {
+  scroll-margin-top: 0 !important;
+}
+
+/* ==========================================================================
+   DYNAMIC ANIMATED EVENT LOGO (Frames 1 to 19)
+   ========================================================================== */
+.animated-eventlogo-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.25s ease;
+}
+
+.animated-eventlogo-wrapper.animated-eventlogo-hero {
+  width: min(72vw, 640px);
+  max-width: 95vw;
+  margin: 0 auto;
+}
+
+.animated-eventlogo-wrapper.animated-eventlogo-header {
+  height: 52px;
+  width: auto;
+}
+
+.animated-eventlogo-wrapper.animated-eventlogo-footer {
+  height: 80px;
+  width: auto;
+}
+
+.animated-eventlogo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 16px rgba(233, 184, 95, 0.38)) brightness(1.05);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.animated-eventlogo-wrapper:hover .animated-eventlogo-img,
+.animated-eventlogo-wrapper.is-hovered .animated-eventlogo-img {
+  filter: drop-shadow(0 0 30px rgba(233, 184, 95, 0.85)) drop-shadow(0 0 50px rgba(43, 113, 128, 0.75)) brightness(1.18);
+  transform: scale(1.035);
+}
+
+@media (max-width: 767px) {
+  .animated-eventlogo-wrapper.animated-eventlogo-hero {
+    width: min(92vw, 480px);
+  }
+  .animated-eventlogo-wrapper.animated-eventlogo-header {
+    height: 40px;
+  }
+  .animated-eventlogo-wrapper.animated-eventlogo-footer {
+    height: 60px;
+  }
+}
+
+.brand-header-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  line-height: 1.1;
+}
+
+.brand-header-title {
+  font-family: var(--font-lemon) !important;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ivory);
+}
+
+.brand-header-subtitle {
+  font-family: var(--font-lemon) !important;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+.header-center-pill {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.header-center-pill span {
+  font-family: var(--font-lemon) !important;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border: 1px solid rgba(233, 184, 95, 0.45);
+  border-radius: 9999px;
+  background: rgba(7, 19, 34, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 16px rgba(233, 184, 95, 0.22);
+  white-space: nowrap;
+}
+
+.nav-separator,
+.footer-nav-dot,
+.hero-nav-dot {
+  color: var(--gold);
+  opacity: 0.55;
+  user-select: none;
+}
+
+.info-note-eyebrow {
+  color: var(--gold) !important;
+  font-size: 8px !important;
+  letter-spacing: 0.12em !important;
+  margin-bottom: 8px !important;
+}
+
+@media (max-width: 767px) {
+  .brand-header-subtitle {
+    display: none;
+  }
+  .header-center-pill {
+    display: none;
+  }
+  .nav-separator {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   ANCHOR ARTISTS TO THE FLOOR (NO BOTTOM GAP) & TIGHTEN ALLOVER SPACING
+   ========================================================================== */
+.lineup-composition {
+  min-height: 100svh !important;
+  height: 100svh !important;
+  padding: 85px var(--gutter) 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.lineup-section {
+  position: relative !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-bottom: none !important;
+  overflow: hidden !important;
+}
+
+.lineup-meta {
+  top: 85px !important;
+  padding: 8px 0 !important;
+  font-size: 8.5px !important;
+  letter-spacing: 1.6px !important;
+}
+
+.lineup-copy {
+  margin-top: 15px !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  z-index: 4 !important;
+}
+
+.lineup-copy > .eyebrow {
+  margin-bottom: 8px !important;
+  font-size: 8px !important;
+  letter-spacing: 1.5px !important;
+}
+
+.lineup-display {
+  margin: 0 0 8px 0 !important;
+  line-height: 0.9 !important;
+}
+
+.lineup-announcement {
+  margin-top: 8px !important;
+  margin-bottom: 6px !important;
+  line-height: 1.4 !important;
+}
+
+.lineup-description {
+  margin-top: 6px !important;
+  margin-bottom: 0 !important;
+  line-height: 1.6 !important;
+}
+
+.lineup-portrait,
+.treatment-guest .lineup-portrait,
+.treatment-teal .lineup-portrait,
+.treatment-gold .lineup-portrait {
+  position: absolute !important;
+  bottom: 0 !important;
+  height: 82% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  z-index: 3 !important;
+  pointer-events: none;
+}
+
+.treatment-guest .lineup-portrait,
+.treatment-teal .lineup-portrait {
+  right: 4% !important;
+  left: auto !important;
+  width: 46% !important;
+}
+
+.treatment-gold .lineup-portrait {
+  left: 4% !important;
+  right: auto !important;
+  width: 46% !important;
+}
+
+.lineup-portrait-image {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+
+.lineup-silhouette,
+.fest-mystery-portal {
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+
+.mystery-silhouette-art {
+  position: absolute !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+}
+
+.fest-mascot-guardian {
+  bottom: 0 !important;
+  margin: 0 !important;
+}
+
+.lineup-cloud-grounding {
+  display: none !important;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 767px) {
+  .lineup-composition {
+    padding: 70px var(--gutter) 0 !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+  .lineup-meta {
+    top: 68px !important;
+    font-size: 7px !important;
+    padding: 6px 0 !important;
+  }
+  .lineup-copy,
+  .treatment-guest .lineup-copy,
+  .treatment-teal .lineup-copy,
+  .treatment-gold .lineup-copy {
+    position: relative !important;
+    z-index: 5 !important;
+    margin-top: 18px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    max-width: min(72vw, 290px) !important;
+    text-shadow: 0 2px 14px rgba(7, 19, 34, 0.9), 0 0 6px rgba(7, 19, 34, 0.98);
+  }
+  .lineup-copy > .eyebrow {
+    margin-bottom: 6px !important;
+    font-size: 7px !important;
+    justify-content: flex-start !important;
+  }
+  .lineup-display {
+    font-size: clamp(48px, 13vw, 72px) !important;
+    margin-bottom: 6px !important;
+    text-align: left !important;
+  }
+  .lineup-announcement {
+    margin-top: 6px !important;
+    font-size: 11.5px !important;
+    text-align: left !important;
+  }
+  .lineup-description {
+    margin-top: 5px !important;
+    font-size: 11px !important;
+    max-width: 26ch !important;
+    text-align: left !important;
+  }
+  /* Mobile Lineup Composition: Truly colossal artist and mascot poses filling all gaps */
+  .treatment-guest .lineup-portrait,
+  .treatment-teal .lineup-portrait,
+  .treatment-gold .lineup-portrait {
+    position: absolute !important;
+    right: -14% !important;
+    left: auto !important;
+    bottom: 0 !important;
+    width: 120% !important;
+    max-width: none !important;
+    height: 92% !important;
+    max-height: 92svh !important;
+    transform: none !important;
+    z-index: 3 !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: flex-end !important;
+    opacity: 1 !important;
+  }
+
+  .lineup-portrait-image,
+  .mystery-silhouette-art {
+    position: absolute !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center bottom !important;
+  }
+
+  /* Mascot Guardians: Special Guest & Artist 1 on right, Artist 2 pose on opposite side (left) */
+  .treatment-guest .fest-mascot-guardian,
+  .treatment-teal .fest-mascot-guardian {
+    position: absolute !important;
+    right: 18% !important;
+    left: auto !important;
+    bottom: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 115% !important;
+    max-width: none !important;
+    height: 94% !important;
+    max-height: 94svh !important;
+    transform: none !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: flex-end !important;
+    z-index: 2 !important;
+    opacity: 0.98 !important;
+    pointer-events: none;
+  }
+
+  .treatment-gold .fest-mascot-guardian {
+    position: absolute !important;
+    left: -6% !important;
+    right: auto !important;
+    bottom: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 115% !important;
+    max-width: none !important;
+    height: 94% !important;
+    max-height: 94svh !important;
+    transform: none !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: flex-start !important;
+    z-index: 2 !important;
+    opacity: 0.98 !important;
+    pointer-events: none;
+  }
+
+  .treatment-gold .fest-mascot-guardian .fest-mascot-img {
+    object-position: left bottom !important;
+  }
+
+  .fest-mascot-img {
+    position: absolute !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center bottom !important;
+    filter: drop-shadow(0 0 24px rgba(233, 184, 95, 0.42)) drop-shadow(0 14px 30px rgba(0, 0, 0, 0.85)) brightness(1.05) contrast(1.04) !important;
+    animation: mascotHoverFloat 7s ease-in-out infinite;
+  }
+
+  .mascot-aura-halo {
+    position: absolute !important;
+    inset: 12% 8% 12% 8% !important;
+    border-radius: 50% !important;
+    background: radial-gradient(circle, rgba(233, 184, 95, 0.3) 0%, rgba(43, 113, 128, 0.16) 50%, transparent 75%) !important;
+    filter: blur(28px) !important;
+  }
+
+  .lineup-composition.treatment-guest .lineup-halo,
+  .lineup-composition.treatment-teal .lineup-halo {
+    right: -10% !important;
+    left: auto !important;
+    top: 35% !important;
+    width: 90% !important;
+    height: 60% !important;
+  }
+
+  .lineup-composition.treatment-gold .lineup-halo {
+    left: -10% !important;
+    right: auto !important;
+    top: 35% !important;
+    width: 90% !important;
+    height: 60% !important;
+  }
+}
+
+/* Hide unconfirmed guest development label and motion toggle */
+.guest-preview-label {
+  display: none !important;
+}
+
+.motion-toggle {
+  display: none !important;
+}
+
+.hero-lineup-explore {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ivory);
+  font-family: var(--font-lemon) !important;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.hero-lineup-explore:hover {
+  color: var(--gold);
+  transform: translateY(2px);
+}
+
+/* ==========================================================================
+   ANIMATED EVENT ART (Dance, Music, Fashion Show)
+   ========================================================================== */
+.animated-event-art-container {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  background: var(--deep-blue);
+}
+
+.animated-event-art-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1), filter 0.25s ease;
+}
+
+.event-art-link:hover .animated-event-art-img,
+.animated-event-art-container.is-hovered .animated-event-art-img {
+  transform: scale(1.045);
+  filter: brightness(1.08) drop-shadow(0 0 14px rgba(233, 184, 95, 0.35));
+}
+
+/* ==========================================================================
+   GLOBAL SMOOTH SCROLLING & RESPONSIVE WRAP
+   ========================================================================== */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw;
+  scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   TYPEWRITER EFFECT (COMING SOON SCHEDULE)
+   ========================================================================== */
+.typewriter-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.25em;
+  position: relative;
+  vertical-align: middle;
+}
+
+.typewriter-text {
+  display: inline;
+  white-space: pre-wrap;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 0.85em;
+  background-color: var(--teal);
+  margin-left: 6px;
+  border-radius: 1px;
+  animation: typewriterBlink 0.8s step-start infinite;
+  box-shadow: 0 0 8px rgba(43, 113, 128, 0.4);
+}
+
+@keyframes typewriterBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .typewriter-cursor {
+    width: 2.5px;
+    height: 0.8em;
+    margin-left: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   TYPEWRITER EFFECT (COMING SOON SCHEDULE)
+   ========================================================================== */
+.typewriter-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.25em;
+  position: relative;
+  vertical-align: middle;
+}
+
+.typewriter-text {
+  display: inline;
+  white-space: pre-wrap;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 0.85em;
+  background-color: var(--teal);
+  margin-left: 6px;
+  border-radius: 1px;
+  animation: typewriterBlink 0.8s step-start infinite;
+  box-shadow: 0 0 8px rgba(43, 113, 128, 0.4);
+}
+
+@keyframes typewriterBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .typewriter-cursor {
+    width: 2.5px;
+    height: 0.8em;
+    margin-left: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor {
+    display: none !important;
+  }
+}
