@@ -41,6 +41,6 @@ export function Header() {
 export function Footer({ reduced, onToggle }: { reduced: boolean; onToggle: () => void }) {
   return <footer className="site-footer">
     <div className="footer-top"><Link className="footer-wordmark" to="/" aria-label="Pravaha home"><AnimatedEventLogo variant="footer" className="footer-logo-animated" /></Link></div>
-    <div className="footer-bottom"><p>PRAVAHA {site.edition.toUpperCase()}<span>STUDENT-FUNDED · COLLEGE-ONLY</span></p><nav aria-label="Footer"><Link to="/events">Events</Link><span className="footer-nav-dot" aria-hidden="true"> · </span><Link to="/schedule">Schedule</Link>{site.email && <a href={`mailto:${site.email}`}>Get in touch</a>}{site.socials.filter(s => safeExternal(s.url)).map(s => <a href={safeExternal(s.url)} key={s.label} target="_blank" rel="noopener noreferrer">{s.label}<Arrow diagonal /></a>)}</nav></div>
+    <div className="footer-bottom"><p>PRAVAHA {site.edition.toUpperCase()}</p><nav aria-label="Footer"><Link to="/events">Events</Link><span className="footer-nav-dot" aria-hidden="true"> · </span><Link to="/schedule">Schedule</Link>{site.email && <a href={`mailto:${site.email}`}>Get in touch</a>}{site.socials.filter(s => safeExternal(s.url)).map(s => <a href={safeExternal(s.url)} key={s.label} target="_blank" rel="noopener noreferrer">{s.label}<Arrow diagonal /></a>)}</nav></div>
   </footer>;
 }

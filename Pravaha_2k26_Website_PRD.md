@@ -3,7 +3,7 @@ Version: 1.2 · 30 October 2026
 Owner: Sooraj Nair / Pravaha organising team
 Deliverable: A working, responsive website template whose artwork, performers, event details, sponsors, and registration links can be replaced through configuration.
 1. Product intent
-Build a premium, illustrated, scroll-driven website for Pravaha 2k26, a student-funded, college-only celebration. The program includes student performances, dance/music/fashion show participation, and a concert or DJ finale. The homepage must feel like a continuous journey through the mascot’s world.
+Build a premium, illustrated, scroll-driven website for Pravaha 2k26, a cultural celebration. The program includes student performances, dance/music/fashion show participation, and a concert or DJ finale. The homepage must feel like a continuous journey through the mascot’s world.
 
 The reference is the scroll choreography of https://www.dhwanicet.com/ and the supplied recording. Study its scene staging, layered movement, and transitions; create an original Pravaha composition using the supplied identity. Do not copy Dhwani’s artwork, character, text, or layout.
 
