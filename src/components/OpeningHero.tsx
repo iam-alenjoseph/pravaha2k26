@@ -65,8 +65,11 @@ export function OpeningHero({
           className="hero-logo landing-hero-logo"
         />
         <p className="hero-edition">PRAVAHA {site.edition.toUpperCase()}</p>
-        <span className="hero-theme-pill">THE ANNUAL CULTURAL SPECTACLE</span>
         {site.date && <p className="hero-date">{site.date}</p>}
+      </div>
+
+      <div className="hero-chest-badge" aria-label="Theme: The Annual Cultural Spectacle">
+        <span className="hero-theme-pill">THE ANNUAL CULTURAL SPECTACLE</span>
       </div>
 
       <div className="hero-bottom">

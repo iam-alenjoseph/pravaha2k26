@@ -27,9 +27,6 @@ export function Header() {
           <span className="brand-header-title">PRAVAHA {site.edition.toUpperCase()}</span>
         </div>
       </Link>
-      <div className="header-center-pill" aria-hidden="true">
-        <span>THE ANNUAL CULTURAL SPECTACLE</span>
-      </div>
       <button id="menu-toggle" className="menu-toggle" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-controls="primary-nav" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><span /><span /></button>
       <nav id="primary-nav" aria-label="Main navigation">
         <Link className="nav-cta" to="/#lineup">Line-up</Link>
